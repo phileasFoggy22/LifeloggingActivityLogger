@@ -1,41 +1,43 @@
 package com.bae.business.service;
 
-public class ActivityServiceImp implements ActivityService{
+import javax.inject.Inject;
 
+import com.bae.persistence.repository.ActivityRepository;
+
+
+public class ActivityServiceImp implements ActivityService{
+	
+	@Inject
+	private ActivityRepository repo;
 	@Override
 	public String createActivity(String activityLog) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return repo.createActivity(activityLog);
 	}
 
 	@Override
 	public String getAnActivity(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getAnActivity(id);
 	}
 
 	@Override
 	public String getAllActivities() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getAllActivities();
 	}
 
 	@Override
 	public String getAllActivitiesByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getAllActivitiesByCategory(category);
 	}
 
 	@Override
 	public String updateActivity(String activityLog, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.updateActivity(activityLog, id);
 	}
 
 	@Override
 	public String deleteActivity(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.deleteActivity(id);
 	}
 
 }
