@@ -20,48 +20,48 @@ public class ActivityEndpoint {
 	@Path("/createActivity")
 	@POST
 	@Produces({"application/json"})
-	public String createActivity(String activityLog) {
-		return service.createActivity(activityLog);
+	public String createActivity(String userEmail,String activityLog) {
+		return service.createActivity(userEmail,activityLog);
 	}
 	
 	// Read
 	@Path("/getAnActivity/{id}")
 	@GET
 	@Produces({"application/json"})
-	public String getAnActivity(Long id) {
-		return service.getAnActivity(id);
+	public String getAnActivity(String userEmail,Long id) {
+		return service.getAnActivity(userEmail,id);
 	}
 	
 	//Read
 	@Path("/getAllActivities")
 	@GET
 	@Produces({"application/json"})
-	public String getAllActivities() {
-		return service.getAllActivities();
+	public String getAllActivities(String userEmail) {
+		return service.getAllActivities(userEmail);
 	}
 	
 	//Read
 	@Path("/getActivitiesByCategory")
 	@GET
 	@Produces({"application/json"})
-	public String getAllActivitiesByCategory(String category) {
-		return service.getAllActivitiesByCategory(category);
+	public String getAllActivitiesByCategory(String userEmail,String category) {
+		return service.getAllActivitiesByCategory(userEmail,category);
 	}
 	
 	// Update
 	@Path("/updateActivity/{id}")
 	@PUT
 	@Produces({"application/json"})
-	public String updateActivity(String activityLog, Long id) {
-		return service.updateActivity(activityLog, id);
+	public String updateActivity(String userEmail,String activityLog, Long id) {
+		return service.updateActivity(userEmail,activityLog, id);
 	}
 		
 	// Delete
 	@Path("/deleteActivity/{id}")
 	@DELETE
 	@Produces({"application/json"})
-	public String deleteActivity(Long id) {
-		return service.deleteActivity(id);
+	public String deleteActivity(String userEmail,Long id) {
+		return service.deleteActivity(userEmail,id);
 	}
 }
 

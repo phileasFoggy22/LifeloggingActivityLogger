@@ -60,4 +60,12 @@ public class Kayaking extends Activity {
 		this.durationMins = durationMins;
 	}
 
+	@Override
+	public String toString() {
+		return "Kayaking [journeyStart=" + journeyStart + ", journeyEnd=" + journeyEnd + ", dateCompleted="
+				+ dateCompleted + ", durationMins=" + durationMins + "]";
+	}
+	
+	
+
 }

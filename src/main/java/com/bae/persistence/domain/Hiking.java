@@ -71,4 +71,12 @@ public class Hiking extends Activity {
 		this.officialRouteName = officialRouteName;
 	}
 
+	@Override
+	public String toString() {
+		return "Hiking [location=" + location + ", startDate=" + startDate + ", endDate=" + endDate + ", lengthMiles="
+				+ lengthMiles + ", officialRouteName=" + officialRouteName + "]";
+	}
+
+	
+	
 }

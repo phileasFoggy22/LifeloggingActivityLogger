@@ -3,18 +3,18 @@ package com.bae.business.service;
 public interface ActivityService {
 	
 	// Create
-	String createActivity(String activityLog);
+	String createActivity(String userEmail,String activityLog);
 
 	// Read
-	String getAnActivity(Long id);
+	String getAnActivity(String userEmail,Long id);
 
-	String getAllActivities();
+	String getAllActivities(String userEmail);
 
-	String getAllActivitiesByCategory(String category);
+	String getAllActivitiesByCategory(String userEmail,String category);
 
 	// Update
-	String updateActivity(String activityLog, Long id);
+	String updateActivity(String userEmail,String activityLog, Long id);
 
 	// Delete
-	String deleteActivity(Long id);
+	String deleteActivity(String userEmail,Long id);
 }

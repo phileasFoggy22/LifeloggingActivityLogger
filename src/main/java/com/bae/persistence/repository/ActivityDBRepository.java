@@ -8,51 +8,59 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
 
 import com.bae.persistence.domain.Activity;
+import com.bae.persistence.domain.User;
 import com.bae.util.JSONUtil;
 
 @Transactional(SUPPORTS)
 @Default
-public class UserDBRepository implements UserRepository {
+public class ActivityDBRepository implements ActivityRepository {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
+	private User userDetails;
 	
 	@Inject
 	private JSONUtil util;
+		
+	@Override
+	@Transactional(REQUIRED)
+	public String createActivity(String userEmail,String activityLog) {
+		userDetails = manager.find(User.class, userEmail);
+		Activity anActivity = util.getObjectForJSON(activityLog, Activity.class);
+		userDetails.getActivityList().add(anActivity);
+		return "{\"message\": \"activity sucessfully added\"}";
+	}
 
 	@Override
-	@Transactional(TxType.REQUIRED)
-	public String createUser(String userJSON) {
+	public String getAnActivity(String userEmail,Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getUser(String userEmail) {
+	public String getAllActivities(String userEmail) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getAllUsers() {
+	public String getAllActivitiesByCategory(String userEmail,String category) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional(TxType.REQUIRED)
-	public String updateUser(String userJSON, String userEmail) {
+	@Transactional(REQUIRED)
+	public String updateActivity(String userEmail,String activityLog, Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional(TxType.REQUIRED)
-	public String deleteUser(String userEmail) {
+	@Transactional(REQUIRED)
+	public String deleteActivity(String userEmail,Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
