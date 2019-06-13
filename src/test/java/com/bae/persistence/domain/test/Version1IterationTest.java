@@ -3,7 +3,12 @@ package com.bae.persistence.domain.test;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -84,13 +89,43 @@ public class Version1IterationTest {
 
 	@Test
 	public void getAllHikingActivities() {
-//		System.out.println(newUser.getActivityList().stream().filter(hike -> hike instanceof Hiking).collect(Collectors.toList()));
+
 		assertEquals(2, newUser.getActivityList().stream().filter(hike -> hike instanceof Hiking).count());
+	}
+	@Test
+	public void getAllHikingActivitiesByDateDesc() {
+
+		//
+		List<Activity> hikingList = newUser.getActivityList().stream().filter(hike -> hike instanceof Hiking).collect(Collectors.toList());
+   		Comparator<Activity> compareByStartDate = (Activity  o1, Activity o2) -> ((Hiking) o1).getStartDate().compareTo(((Hiking) o2).getStartDate());		 
+		Collections.sort(hikingList, compareByStartDate.reversed());
+		assertEquals( "2014-02-16", ((Hiking) hikingList.get(0)).getStartDate().toString() );
+
 	}
 
 	@Test
 	public void getAllActivitiesbyDateDesc() {
-//		assertEquals(2, newUser.getActivityList().stream().filter(hike -> hike instanceof Hiking).sorted());
+		List<Activity> hikingList = newUser.getActivityList().stream().filter(hike -> hike instanceof Hiking).collect(Collectors.toList());
+   		Comparator<Activity> compareByStartDate = (Activity  o1, Activity o2) -> ((Hiking) o1).getStartDate().compareTo(((Hiking) o2).getStartDate());		 
+		Collections.sort(hikingList, compareByStartDate.reversed());
+//		System.out.println(hikingList);
+		
+		
+		List<Activity> kayakingList = newUser.getActivityList().stream().filter(kayak -> kayak instanceof Kayaking).collect(Collectors.toList());
+   		Comparator<Activity> compareByDate = (Activity  o1, Activity o2) -> ((Kayaking) o1).getDateCompleted().compareTo(((Kayaking) o2).getDateCompleted());		 
+		Collections.sort(kayakingList, compareByDate.reversed());
+//		System.out.println(kayakingList);
+		
+		List<Activity> newList = new ArrayList<Activity>(hikingList);
+		newList.addAll(kayakingList);
+		
+		Comparator<Activity> compareAllDates = (Activity  o1, Activity o2) -> ((Hiking) o1).getStartDate().compareTo(((Kayaking) o2).getDateCompleted());	
+		
+//		Collections.sort(newList, compareAllDates.reversed());
+		
+//		System.out.println(newList);
+		
+		assert (true);
 	}
 
 	@Test
@@ -120,7 +155,15 @@ public class Version1IterationTest {
 	}
 
 	@Test
+	public void getAllKayakingActivitiebyDateDesc() {
+		List<Activity> kayakingList = newUser.getActivityList().stream().filter(kayak -> kayak instanceof Kayaking).collect(Collectors.toList());
+   		Comparator<Activity> compareByDate = (Activity  o1, Activity o2) -> ((Kayaking) o1).getDateCompleted().compareTo(((Kayaking) o2).getDateCompleted());		 
+		Collections.sort(kayakingList, compareByDate.reversed());
+		assertEquals( "2014-03-20", ((Kayaking) kayakingList.get(0)).getDateCompleted().toString());
+	}
+	@Test
 	public void getAllKayakingActivities() {
-		assert (true);
+
+		assertEquals(1, newUser.getActivityList().stream().filter(kayak -> kayak instanceof Kayaking).count());
 	}
 }
