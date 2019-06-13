@@ -6,11 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-	@Column(length = 100)
+	@Id
+	@Column(length = 100, nullable = false)
 	private String userEmail;
 	@Column(length = 50)
 	private String userName;
@@ -59,5 +61,13 @@ public class User {
 	public void setActivityList(List<Activity> activityList) {
 		this.activityList = activityList;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userEmail=" + userEmail + ", userName=" + userName + ", userPassword=" + userPassword
+				+ ", activityList=" + activityList + "]";
+	}
+	
+	
 
 }
