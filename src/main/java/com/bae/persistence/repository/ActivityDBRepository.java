@@ -34,7 +34,8 @@ public class ActivityDBRepository implements ActivityRepository {
 
 	@Override
 	public String getAnActivity(String userEmail,Long id) {
-		// TODO Auto-generated method stub
+		userDetails = manager.find(User.class, userEmail);
+		userDetails.getActivityList().stream().
 		return null;
 	}
 

@@ -30,6 +30,8 @@ public class UserDBRepository implements UserRepository {
 	public String createUser(String userJSON) {
 		User newUser = util.getObjectForJSON(userJSON, User.class);
 		System.out.println("error: " + newUser);
+//		System.out.println("here");
+//		System.out.println(newUser.getUserEmail());
 		manager.persist(newUser);
 		return "{\"message\": \"user successfully added\"}";
 	}
