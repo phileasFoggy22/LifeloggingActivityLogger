@@ -12,58 +12,55 @@ import com.bae.business.service.ActivityService;
 
 @Path("/activities")
 public class ActivityEndpoint {
-	
+
 	@Inject
 	private ActivityService service;
-	
+
 	// Create
 	@Path("/createActivity")
 	@POST
-	@Produces({"application/json"})
-	public String createActivity(String userEmail,String activityLog) {
-		return service.createActivity(userEmail,activityLog);
+	@Produces({ "application/json" })
+	public String createActivity(String userEmail, String activityLog) {
+		return service.createActivity(userEmail, activityLog);
 	}
-	
+
 	// Read
 	@Path("/getAnActivity/{id}")
 	@GET
-	@Produces({"application/json"})
-	public String getAnActivity(String userEmail,Long id) {
-		return service.getAnActivity(userEmail,id);
+	@Produces({ "application/json" })
+	public String getAnActivity(String userEmail, int id) {
+		return service.getAnActivity(userEmail, id);
 	}
-	
-	//Read
+
+	// Read
 	@Path("/getAllActivities")
 	@GET
-	@Produces({"application/json"})
+	@Produces({ "application/json" })
 	public String getAllActivities(String userEmail) {
 		return service.getAllActivities(userEmail);
 	}
-	
-	//Read
+
+	// Read
 	@Path("/getActivitiesByCategory")
 	@GET
-	@Produces({"application/json"})
-	public String getAllActivitiesByCategory(String userEmail,String category) {
-		return service.getAllActivitiesByCategory(userEmail,category);
+	@Produces({ "application/json" })
+	public String getAllActivitiesByCategory(String userEmail, String category) {
+		return service.getAllActivitiesByCategory(userEmail, category);
 	}
-	
+
 	// Update
 	@Path("/updateActivity/{id}")
 	@PUT
-	@Produces({"application/json"})
-	public String updateActivity(String userEmail,String activityLog, Long id) {
-		return service.updateActivity(userEmail,activityLog, id);
+	@Produces({ "application/json" })
+	public String updateActivity(String userEmail, String activityLog, int id) {
+		return service.updateActivity(userEmail, activityLog, id);
 	}
-		
+
 	// Delete
 	@Path("/deleteActivity/{id}")
 	@DELETE
-	@Produces({"application/json"})
-	public String deleteActivity(String userEmail,Long id) {
-		return service.deleteActivity(userEmail,id);
+	@Produces({ "application/json" })
+	public String deleteActivity(String userEmail, int id) {
+		return service.deleteActivity(userEmail, id);
 	}
 }
-
-
-

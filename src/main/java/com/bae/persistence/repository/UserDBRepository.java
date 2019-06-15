@@ -1,6 +1,5 @@
 package com.bae.persistence.repository;
 
-import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import javax.enterprise.inject.Default;
@@ -14,25 +13,21 @@ import javax.transaction.Transactional.TxType;
 import com.bae.persistence.domain.User;
 import com.bae.util.JSONUtil;
 
-
-
 @Transactional(SUPPORTS)
 @Default
 public class UserDBRepository implements UserRepository {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
-	
+
 	@Inject
 	private JSONUtil util;
 
 	@Override
 	@Transactional(TxType.REQUIRED)
 	public String createUser(String userJSON) {
-		User newUser = util.getObjectForJSON(userJSON, User.class);
-		System.out.println("error: " + newUser);
-//		System.out.println("here");
-//		System.out.println(newUser.getUserEmail());
-		manager.persist(newUser);
+		// User newUser = util.getObjectForJSON(userJSON, User.class);
+		// System.out.println("error: " + newUser);
+		// manager.persist(newUser);
 		return "{\"message\": \"user successfully added\"}";
 	}
 
@@ -68,5 +63,5 @@ public class UserDBRepository implements UserRepository {
 		manager.remove(aUser);
 		return "{\"message\": \"User sucessfully removed\"}";
 	}
-	
+
 }
