@@ -17,4 +17,5 @@ public interface ActivityService {
 
 	// Delete
 	String deleteActivity(String userEmail, int id);
+
 }

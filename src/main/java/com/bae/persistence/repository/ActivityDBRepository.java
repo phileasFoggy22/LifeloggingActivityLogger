@@ -30,7 +30,9 @@ public class ActivityDBRepository implements ActivityRepository {
 	@Inject
 	private JSONUtil util;
 
+
 	// create
+
 	@Override
 	@Transactional(REQUIRED)
 	public String createActivity(String userEmail, String activityLog) {
@@ -50,12 +52,14 @@ public class ActivityDBRepository implements ActivityRepository {
 	@Override
 	public String getAllActivities(String userEmail) {
 		userDetails = manager.find(User.class, userEmail);
+
 		return util.getJSONForObject(userDetails.getActivityList());
 	}
 
 	@Override
 	public String getAllActivitiesByCategory(String userEmail, String category) {
 		userDetails = manager.find(User.class, userEmail);
+
 		if (category.equalsIgnoreCase("hiking")) {
 			List<Activity> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking)
 					.collect(Collectors.toList());
@@ -73,11 +77,13 @@ public class ActivityDBRepository implements ActivityRepository {
 		} else {
 			return "{\"message\": \"You have not completed any activities\"}";
 		}
+
 	}
 
 	// update
 	@Override
 	@Transactional(REQUIRED)
+
 	public String updateActivity(String userEmail, String activityLog, int id) {
 		Activity updatedActivity = util.getObjectForJSON(activityLog, Activity.class);
 		userDetails = manager.find(User.class, userEmail);
@@ -102,14 +108,17 @@ public class ActivityDBRepository implements ActivityRepository {
 					.setJourneyStart(((Kayaking) updatedActivity).getJourneyStart());
 		}
 		return "{\"message\": \"Activity successfully updated\"}";
+
 	}
 
 	// delete
 	@Override
 	@Transactional(REQUIRED)
+
 	public String deleteActivity(String userEmail, int id) {
 		userDetails = manager.find(User.class, userEmail);
 		userDetails.getActivityList().remove(id);
 		return "{\"message\": \"activity successfully removed\"}";
+
 	}
 }

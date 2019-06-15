@@ -13,9 +13,11 @@ public interface ActivityRepository {
 	String getAllActivitiesByCategory(String userEmail, String category);
 
 	// Update
+
 	String updateActivity(String userEmail, String activityLog, int id);
 
 	// Delete
 	String deleteActivity(String userEmail, int id);
+
 
 }

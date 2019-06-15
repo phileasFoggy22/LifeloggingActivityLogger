@@ -12,11 +12,14 @@ public class ActivityServiceImp implements ActivityService {
 	@Override
 	public String createActivity(String userEmail, String activityLog) {
 		return actRepo.createActivity(userEmail, activityLog);
+
 	}
 
 	@Override
 	public String getAnActivity(String userEmail, int id) {
+
 		return actRepo.getAnActivity(userEmail, id);
+
 	}
 
 	@Override
@@ -26,6 +29,7 @@ public class ActivityServiceImp implements ActivityService {
 
 	@Override
 	public String getAllActivitiesByCategory(String userEmail, String category) {
+
 		return actRepo.getAllActivitiesByCategory(userEmail, category);
 	}
 
@@ -37,6 +41,7 @@ public class ActivityServiceImp implements ActivityService {
 	@Override
 	public String deleteActivity(String userEmail, int id) {
 		return actRepo.deleteActivity(userEmail, id);
+
 	}
 
 }
