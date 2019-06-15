@@ -52,7 +52,9 @@ public class ActivityEndpoint {
 	@Path("/updateActivity/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateActivity(String userEmail, String activityLog, Long id) {
+
+	public String updateActivity(String userEmail, String activityLog, int id) {
+
 		return service.updateActivity(userEmail, activityLog, id);
 	}
 
@@ -60,7 +62,9 @@ public class ActivityEndpoint {
 	@Path("/deleteActivity/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteActivity(String userEmail, Long id) {
+
+	public String deleteActivity(String userEmail, int id) {
+
 		return service.deleteActivity(userEmail, id);
 	}
 }

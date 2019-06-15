@@ -13,9 +13,9 @@ public interface ActivityService {
 	String getAllActivitiesByCategory(String userEmail, String category);
 
 	// Update
-	String updateActivity(String userEmail, String activityLog, Long id);
+	String updateActivity(String userEmail, String activityLog, int id);
 
 	// Delete
-	String deleteActivity(String userEmail, Long id);
+	String deleteActivity(String userEmail, int id);
 
 }
