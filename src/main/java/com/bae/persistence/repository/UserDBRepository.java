@@ -16,7 +16,7 @@ import com.bae.util.JSONUtil;
 @Transactional(SUPPORTS)
 @Default
 public class UserDBRepository implements UserRepository {
-	@PersistenceContext(unitName = "primary")
+	@PersistenceContext(name = "primary")
 	private EntityManager manager;
 
 	@Inject

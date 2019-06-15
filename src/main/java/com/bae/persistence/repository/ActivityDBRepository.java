@@ -23,13 +23,12 @@ import com.bae.util.JSONUtil;
 @Transactional(SUPPORTS)
 @Default
 public class ActivityDBRepository implements ActivityRepository {
-	@PersistenceContext(unitName = "Secondary")
+	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 	private User userDetails;
 
 	@Inject
 	private JSONUtil util;
-
 
 	// create
 
