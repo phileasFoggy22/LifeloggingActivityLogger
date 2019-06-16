@@ -1,0 +1,71 @@
+#imageBanner {
+    background-color: lightblue;
+    height=100vh;
+    width: 100%;
+    transform: rotate(180deg);
+    z-index: 0;
+}
+
+.container-fluid.full-width {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+}
+
+
+.Splash {
+    height: 100vh;
+    background-attachment: fixed;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    opacity: 1;
+
+}
+
+#Hi {
+    opacity=0.3;
+    color: antiquewhite;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 150%;
+}
+
+
+#HiBox {
+    border-radius: 25px;
+    background-color: hsla(0, 0%, 50%, 1);
+    text-align: left;
+    left: 5%;
+    bottom: 10vh;
+    background-position: center center;
+    position: absolute;
+    padding: 2vh;
+    transform: rotate(180deg);
+    z-index: 0;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login-btn {
+    background-color: antiquewhite;
+    color: hsla(0, 0%, 50%, 1);
+    font-weight: bold;
+    margin-top: 1vh;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 100%;
+    float: right;
+}
+
+#login-btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#pwd {
+    width: 65%;
+    margin-top: 1vh;
+
+}
+
+html {
+    scroll - behavior: smooth;
+}

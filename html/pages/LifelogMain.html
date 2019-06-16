@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lifelogging</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title dir="ltr">Lifelogging</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="../scripts/LifelogMain.js"></script>
+</head>
+
+<body onload="setUpPage()">
+    <div class="container-fluid full-width">
+        <div class="row ">
+            <div class="wrapperImage Splash" id="imageBanner">
+
+                <div class="row">
+
+
+                    <span id='Hi'>
+                        <div id='HiBox' style=' bottom:40vh;'>
+                            <div class="input-group mb-3" style="margin:auto;" id="loginText">
+
+                                <h2>Hi, do I know you?</h2>
+                                <p>Your face is familiar… but I can't quite place you...</p>
+
+                                <input type="text" class="form-control" placeholder="type your name" aria-label="username" aria-describedby="basic-addon1" id="usernameText">
+
+
+                                <input type="password" placeholder="password" class="form-control" id="pwd">
+
+
+                                <button class="btn" id="login-btn" onclick="logIn()">Log in</button>
+                            </div>
+                            <div class="input-group mb-3" style="margin:auto; display:none;" id="welcomeText">
+
+                                <h2 id="userWelecome"></h2>
+                                <p>These are your most recently logged activiies</p>
+                                <div class="btn-group dropleft">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dropleft
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="#home">Home</a>
+                                        <a href="#about">About</a>
+                                        <a href="#contact">Contact</a>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                    </span>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
