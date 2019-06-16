@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.bae.business.service.ActivityService;
@@ -17,53 +18,53 @@ public class ActivityEndpoint {
 	private ActivityService service;
 
 	// Create
-	@Path("/createActivity")
+	@Path("/createActivity/{email}")
 	@POST
 	@Produces({ "application/json" })
-	public String createActivity(String userEmail, String activityLog) {
+	public String createActivity(@PathParam("email") String userEmail, String activityLog) {
 		return service.createActivity(userEmail, activityLog);
 	}
 
 	// Read
-	@Path("/getAnActivity/{id}")
+	@Path("/getAnActivity/{email}/{id}")
 	@GET
 	@Produces({ "application/json" })
-	public String getAnActivity(String userEmail, int id) {
+	public String getAnActivity(@PathParam("email") String userEmail, @PathParam("id") int id) {
 		return service.getAnActivity(userEmail, id);
 	}
 
 	// Read
-	@Path("/getAllActivities")
+	@Path("/getAllActivities/{email}")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllActivities(String userEmail) {
+	public String getAllActivities(@PathParam("email") String userEmail) {
 		return service.getAllActivities(userEmail);
 	}
 
 	// Read
-	@Path("/getActivitiesByCategory")
+	@Path("/getActivitiesByCategory/{email}")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllActivitiesByCategory(String userEmail, String category) {
+	public String getAllActivitiesByCategory(@PathParam("email") String userEmail, String category) {
 		return service.getAllActivitiesByCategory(userEmail, category);
 	}
 
 	// Update
-	@Path("/updateActivity/{id}")
+	@Path("/updateActivity/{email}/{id}")
 	@PUT
 	@Produces({ "application/json" })
 
-	public String updateActivity(String userEmail, String activityLog, int id) {
+	public String updateActivity(@PathParam("email") String userEmail, String activityLog, @PathParam("id") int id) {
 
 		return service.updateActivity(userEmail, activityLog, id);
 	}
 
 	// Delete
-	@Path("/deleteActivity/{id}")
+	@Path("/deleteActivity/{email}/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 
-	public String deleteActivity(String userEmail, int id) {
+	public String deleteActivity(@PathParam("email") String userEmail, @PathParam("id") int id) {
 
 		return service.deleteActivity(userEmail, id);
 	}
