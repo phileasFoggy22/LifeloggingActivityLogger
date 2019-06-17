@@ -84,11 +84,13 @@ public class ActivityDBRepository implements ActivityRepository {
 	@Transactional(REQUIRED)
 
 	public String updateActivity(String userEmail, String activityLog, int id) {
-		Activity updatedActivity = util.getObjectForJSON(activityLog, Activity.class);
 		userDetails = manager.find(User.class, userEmail);
-		userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());
-		userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());
+
 		if (userDetails.getActivityList().get(id) instanceof Hiking) {
+			Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);
+			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());
+			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());
+
 			((Hiking) userDetails.getActivityList().get(id)).setEndDate(((Hiking) updatedActivity).getEndDate());
 			((Hiking) userDetails.getActivityList().get(id))
 					.setLengthMiles(((Hiking) updatedActivity).getLengthMiles());
@@ -97,6 +99,9 @@ public class ActivityDBRepository implements ActivityRepository {
 					.setOfficialRouteName(((Hiking) updatedActivity).getOfficialRouteName());
 			((Hiking) userDetails.getActivityList().get(id)).setStartDate(((Hiking) updatedActivity).getStartDate());
 		} else if (userDetails.getActivityList().get(id) instanceof Kayaking) {
+			Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);
+			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());
+			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());
 			((Kayaking) userDetails.getActivityList().get(id))
 					.setDateCompleted(((Kayaking) updatedActivity).getDateCompleted());
 			((Kayaking) userDetails.getActivityList().get(id))
@@ -106,7 +111,8 @@ public class ActivityDBRepository implements ActivityRepository {
 			((Kayaking) userDetails.getActivityList().get(id))
 					.setJourneyStart(((Kayaking) updatedActivity).getJourneyStart());
 		}
-		return "{\"message\": \"Activity successfully updated\"}";
+		// return "{\"message\": \"Activity successfully updated\"}";
+		return activityLog;
 
 	}
 
