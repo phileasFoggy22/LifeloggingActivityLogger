@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 @Entity
 public class Kayaking extends Activity {
 
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private String journeyStart;
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private String journeyEnd;
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private LocalDate dateCompleted;
-	@Column(length = 3)
+	@Column(length = 3, nullable = true)
 	private int durationMins;
 
 	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,

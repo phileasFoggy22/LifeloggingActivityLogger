@@ -63,5 +63,13 @@ public class UserDBRepository implements UserRepository {
 		manager.remove(aUser);
 		return "{\"message\": \"User sucessfully removed\"}";
 	}
+	
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
+	public void setUtil(JSONUtil util) {
+		this.util = util;
+	}
 
 }

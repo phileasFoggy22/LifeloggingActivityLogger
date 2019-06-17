@@ -8,15 +8,15 @@ import javax.persistence.Entity;
 @Entity
 public class Hiking extends Activity {
 
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private String location;
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private LocalDate startDate;
-	@Column(length = 50)
+	@Column(length = 50, nullable = true)
 	private LocalDate endDate;
-	@Column(length = 5)
+	@Column(length = 5, nullable = true)
 	private int lengthMiles;
-	@Column(length = 200)
+	@Column(length = 200, nullable = true)
 	private String officialRouteName;
 
 	public Hiking(String lifelogDirectory, String description, String location, LocalDate localDate,

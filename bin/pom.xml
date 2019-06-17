@@ -179,7 +179,7 @@
 		<profile>
 			<id>deploy</id>
 			<build>
-				<directory>C:\Users\Admin\Downloads\wildfly-10.0.0.Final\standalone\deployments
+				<directory>G:\QA Consulting\wildfly-10.1.0.Final\standalone\deployments
 			
 			</directory>
 			</build>
@@ -215,9 +215,6 @@
                 <useSystemClassLoader>false</useSystemClassLoader>
             </configuration>
         </plugin>
-        
-        
-        
         </plugins>
     </build>
 </project>
