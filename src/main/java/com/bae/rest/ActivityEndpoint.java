@@ -42,10 +42,11 @@ public class ActivityEndpoint {
 	}
 
 	// Read
-	@Path("/getActivitiesByCategory/{email}")
+	@Path("/getActivitiesByCategory/{email}/{category}")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllActivitiesByCategory(@PathParam("email") String userEmail, String category) {
+	public String getAllActivitiesByCategory(@PathParam("email") String userEmail,
+			@PathParam("category") String category) {
 		return service.getAllActivitiesByCategory(userEmail, category);
 	}
 
