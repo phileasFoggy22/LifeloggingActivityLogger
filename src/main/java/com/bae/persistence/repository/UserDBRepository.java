@@ -26,7 +26,6 @@ public class UserDBRepository implements UserRepository {
 	@Transactional(TxType.REQUIRED)
 	public String createUser(String userJSON) {
 		User newUser = util.getObjectForJSON(userJSON, User.class);
-		System.out.println("error: " + newUser);
 		manager.persist(newUser);
 		return "{\"message\": \"user successfully added\"}";
 	}
@@ -34,6 +33,8 @@ public class UserDBRepository implements UserRepository {
 	@Override
 	public String getUser(String userEmail) {
 		User aUser = manager.find(User.class, userEmail);
+		System.out.println("email: "+userEmail);
+		System.out.println(aUser);
 		return util.getJSONForObject(aUser);
 	}
 
@@ -48,6 +49,8 @@ public class UserDBRepository implements UserRepository {
 	public String updateUser(String userJSON, String userEmail) {
 		User theUser = util.getObjectForJSON(userJSON, User.class);
 		User updateThisUser = manager.find(User.class, userEmail);
+		System.out.println("here: "+updateThisUser);
+		System.out.println("here2: "+theUser);
 		updateThisUser.setUserEmail(theUser.getUserEmail());
 		updateThisUser.setUserName(theUser.getUserName());
 		updateThisUser.setUserPassword(theUser.getUserPassword());

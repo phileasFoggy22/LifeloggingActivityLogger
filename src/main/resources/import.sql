@@ -31,7 +31,8 @@ VALUES ('Kayaking',
 
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',17);
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',18);
-
+Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',102);
+Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',101);
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',19);
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',20);
 Insert into USER_ACTIVITY  values ('odio@sodales.edu',21);
