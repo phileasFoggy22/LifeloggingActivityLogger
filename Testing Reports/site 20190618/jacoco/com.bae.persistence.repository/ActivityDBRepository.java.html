@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityDBRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LifeloggingActivityLogV3</a> &gt; <a href="index.source.html" class="el_package">com.bae.persistence.repository</a> &gt; <span class="el_source">ActivityDBRepository.java</span></div><h1>ActivityDBRepository.java</h1><pre class="source lang-java linenums">package com.bae.persistence.repository;
+
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import com.bae.persistence.domain.Activity;
+import com.bae.persistence.domain.Hiking;
+import com.bae.persistence.domain.Kayaking;
+import com.bae.persistence.domain.User;
+import com.bae.util.JSONUtil;
+
+@Transactional(SUPPORTS)
+@Default
+<span class="nc" id="L25">public class ActivityDBRepository implements ActivityRepository {</span>
+	@PersistenceContext(unitName = &quot;primary&quot;)
+	private EntityManager manager;
+	private User userDetails;
+
+	@Inject
+	private JSONUtil util;
+
+	// create
+
+	@Override
+	@Transactional(REQUIRED)
+	public String createActivity(String userEmail, String activityLog) {
+<span class="nc" id="L38">		userDetails = manager.find(User.class, userEmail);</span>
+<span class="nc" id="L39">		Activity anActivity = util.getObjectForJSON(activityLog, Activity.class);</span>
+<span class="nc" id="L40">		userDetails.getActivityList().add(anActivity);</span>
+<span class="nc" id="L41">		return &quot;{\&quot;message\&quot;: \&quot;activity successfully added\&quot;}&quot;;</span>
+	}
+
+	// read
+	@Override
+	public String getAnActivity(String userEmail, int id) {
+<span class="nc" id="L47">		userDetails = manager.find(User.class, userEmail);</span>
+<span class="nc" id="L48">		return util.getJSONForObject(userDetails.getActivityList().get(id));</span>
+	}
+
+	@Override
+	public String getAllActivities(String userEmail) {
+<span class="nc" id="L53">		userDetails = manager.find(User.class, userEmail);</span>
+
+<span class="nc" id="L55">		return util.getJSONForObject(userDetails.getActivityList());</span>
+	}
+
+	@Override
+	public String getAllActivitiesByCategory(String userEmail, String category) {
+<span class="nc" id="L60">		userDetails = manager.find(User.class, userEmail);</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		if (category.equalsIgnoreCase(&quot;hiking&quot;)) {</span>
+<span class="nc" id="L63">			List&lt;Activity&gt; hikingList = userDetails.getActivityList().stream().filter(hike -&gt; hike instanceof Hiking)</span>
+<span class="nc" id="L64">					.collect(Collectors.toList());</span>
+<span class="nc" id="L65">			Comparator&lt;Activity&gt; compareByStartDate = (Activity o1, Activity o2) -&gt; ((Hiking) o1).getStartDate()</span>
+<span class="nc" id="L66">					.compareTo(((Hiking) o2).getStartDate());</span>
+<span class="nc" id="L67">			Collections.sort(hikingList, compareByStartDate.reversed());</span>
+<span class="nc" id="L68">			return util.getJSONForObject(hikingList);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		} else if (category.equalsIgnoreCase(&quot;kayaking&quot;)) {</span>
+<span class="nc" id="L70">			List&lt;Activity&gt; kayakingList = userDetails.getActivityList().stream()</span>
+<span class="nc" id="L71">					.filter(kayak -&gt; kayak instanceof Kayaking).collect(Collectors.toList());</span>
+<span class="nc" id="L72">			Comparator&lt;Activity&gt; compareByDate = (Activity o1, Activity o2) -&gt; ((Kayaking) o1).getDateCompleted()</span>
+<span class="nc" id="L73">					.compareTo(((Kayaking) o2).getDateCompleted());</span>
+<span class="nc" id="L74">			Collections.sort(kayakingList, compareByDate.reversed());</span>
+<span class="nc" id="L75">			return util.getJSONForObject(kayakingList);</span>
+		} else {
+<span class="nc" id="L77">			return &quot;{\&quot;message\&quot;: \&quot;You have not completed any activities\&quot;}&quot;;</span>
+		}
+
+	}
+
+	// update
+	@Override
+	@Transactional(REQUIRED)
+
+	public String updateActivity(String userEmail, String activityLog, int id) {
+<span class="nc" id="L87">		userDetails = manager.find(User.class, userEmail);</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		if (userDetails.getActivityList().get(id) instanceof Hiking) {</span>
+<span class="nc" id="L90">			Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);</span>
+<span class="nc" id="L91">			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());</span>
+<span class="nc" id="L92">			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());</span>
+
+<span class="nc" id="L94">			((Hiking) userDetails.getActivityList().get(id)).setEndDate(((Hiking) updatedActivity).getEndDate());</span>
+<span class="nc" id="L95">			((Hiking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L96">					.setLengthMiles(((Hiking) updatedActivity).getLengthMiles());</span>
+<span class="nc" id="L97">			((Hiking) userDetails.getActivityList().get(id)).setLocation(((Hiking) updatedActivity).getLocation());</span>
+<span class="nc" id="L98">			((Hiking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L99">					.setOfficialRouteName(((Hiking) updatedActivity).getOfficialRouteName());</span>
+<span class="nc" id="L100">			((Hiking) userDetails.getActivityList().get(id)).setStartDate(((Hiking) updatedActivity).getStartDate());</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		} else if (userDetails.getActivityList().get(id) instanceof Kayaking) {</span>
+<span class="nc" id="L102">			Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);</span>
+<span class="nc" id="L103">			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());</span>
+<span class="nc" id="L104">			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());</span>
+<span class="nc" id="L105">			((Kayaking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L106">					.setDateCompleted(((Kayaking) updatedActivity).getDateCompleted());</span>
+<span class="nc" id="L107">			((Kayaking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L108">					.setDurationMins(((Kayaking) updatedActivity).getDurationMins());</span>
+<span class="nc" id="L109">			((Kayaking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L110">					.setJourneyEnd(((Kayaking) updatedActivity).getJourneyEnd());</span>
+<span class="nc" id="L111">			((Kayaking) userDetails.getActivityList().get(id))</span>
+<span class="nc" id="L112">					.setJourneyStart(((Kayaking) updatedActivity).getJourneyStart());</span>
+		}
+		// return &quot;{\&quot;message\&quot;: \&quot;Activity successfully updated\&quot;}&quot;;
+<span class="nc" id="L115">		return activityLog;</span>
+
+	}
+
+	// delete
+	@Override
+	@Transactional(REQUIRED)
+
+	public String deleteActivity(String userEmail, int id) {
+<span class="nc" id="L124">		userDetails = manager.find(User.class, userEmail);</span>
+<span class="nc" id="L125">		userDetails.getActivityList().remove(id);</span>
+<span class="nc" id="L126">		return &quot;{\&quot;message\&quot;: \&quot;activity successfully removed\&quot;}&quot;;</span>
+
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
