@@ -30,31 +30,40 @@ public class Version2IterationTest {
 	private JSONUtil util;
 
 	private static final String MOCK_DATA_ARRAY = "[{\"userEmail\":\"L.Cravensworth@gmail.com\",\"userName\":\"Laszlo Cravensworth\",\"password\":\"password\"}]";
-	private static final String MOCK_OBJECT = "{\"userEmail\":\"L.Cravensworth@gmail.com\",\"userName\":\"Laszlo Cravensworth\",\"password\":\"passord\"}";
-	private static final String MOCK_OBJECT2 = "{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"password\":\"passord\"}";
-	private static final String MOCK_OBJECT3 = "{\"userEmail\":\"N.Relentless@gmail.com\",\"userName\":\"Nandor the Relentless\",\"password\":\"passord\"}";
+	private static final String MOCK_OBJECT = "{\"userEmail\":\"L.Cravensworth@gmail.com\",\"userName\":\"Laszlo Cravensworth\",\"password\":\"password\"}";
+	private static final String MOCK_OBJECT2 = "{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"password\":\"password\"}";
+	private static final String MOCK_OBJECT3 = "{\"userEmail\":\"N.Relentless@gmail.com\",\"userName\":\"Nandor the Relentless\",\"password\":\"password\"}";
 
 	@Before
 	public void start() {
 		repo.setManager(manager);
 		util = new JSONUtil();
 		repo.setUtil(util);
-//		repo.createUser(MOCK_OBJECT2);
+		repo.createUser(MOCK_OBJECT2);
 	}
 
 	@Test
 	public void addUser() {
-//		 String reply = repo.createUser(MOCK_OBJECT);
 		String reply = repo.createUser(MOCK_OBJECT);
 		assertEquals("{\"message\": \"user successfully added\"}",reply);
 	}
 
 	@Test
+	public void getUser() {
+		String reply = repo.getUser("N.Cravensworth@gmail.com");
+		System.out.println(reply);
+		assertEquals("{\"message\": \"user successfully added\"}",reply);
+	}
+	
+	@Test
 	public void updateUser() {
 		User toUpdate  = util.getObjectForJSON(repo.getUser("N.Cravensworth@gmail.com"), User.class);
+		System.out.println(toUpdate);
 		User newValues = util.getObjectForJSON(MOCK_OBJECT3, User.class);
-//		String reply = repo.updateUser(MOCK_OBJECT3, "N.Cravensworth@gmail.com");
-//		assertEquals("{\"message\": \"user successfully added\"}",reply);
+		System.out.println(newValues);
+		String reply = repo.updateUser(MOCK_OBJECT3, "N.Cravensworth@gmail.com");
+		System.out.println(reply);
+		assertEquals("{\"message\": \"user successfully updated\"}",reply);
 		assert (true);
 	}
 
