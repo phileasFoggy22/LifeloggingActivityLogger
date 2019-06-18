@@ -19,7 +19,7 @@
 
 
                     <span id='Hi'>
-                        <div id='HiBox' style=' bottom:40vh;'>
+                        <div id='HiBox' style=' bottom:10vh;'>
                             <div class="input-group mb-3" style="margin:auto;" id="loginText">
 
                                 <h2>Hi, do I know you?</h2>
@@ -37,18 +37,21 @@
 
                                 <h2 id="userWelecome"></h2>
                                 <p>These are your most recently logged activiies</p>
-                                <div class="btn-group dropleft">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Activity Type
+                                <div class="container-flex">
+                                    <button type="button" class="btn btn-warning">
+                                        All Activities
                                     </button>
-                                    <div class="dropdown-menu">
-                                        <label>Home</label>
-
-                                    </div>
-
+                                    <button type="button" class="btn btn-success">
+                                        Hiking
+                                    </button>
+                                    <button type="button" class="btn btn-primary">
+                                        Kayaking
+                                    </button>
                                 </div>
                                 <table id="recentActivityTable"></table>
-                                <div id="recentactivityList"></div>
+                                <div class="container" id="contents">
+                                    <div id="recentactivityList"></div>
+                                </div>
 
                             </div>
                         </div>
