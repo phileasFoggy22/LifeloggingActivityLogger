@@ -60,18 +60,21 @@ public class ActivityDBRepository implements ActivityRepository {
 		userDetails = manager.find(User.class, userEmail);
 
 		if (category.equalsIgnoreCase("hiking")) {
+			// Was by start date before null values caused errors
 			List<Activity> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking)
 					.collect(Collectors.toList());
-			Comparator<Activity> compareByStartDate = (Activity o1, Activity o2) -> ((Hiking) o1).getStartDate()
-					.compareTo(((Hiking) o2).getStartDate());
-			Collections.sort(hikingList, compareByStartDate.reversed());
+			Comparator<Activity> compareByRecentID = (Activity o1, Activity o2) -> ((Hiking) o1).getId()
+					.compareTo(((Hiking) o2).getId());
+			Collections.sort(hikingList, compareByRecentID.reversed());
 			return util.getJSONForObject(hikingList);
+
 		} else if (category.equalsIgnoreCase("kayaking")) {
+			// Was by start date before null values caused errors
 			List<Activity> kayakingList = userDetails.getActivityList().stream()
 					.filter(kayak -> kayak instanceof Kayaking).collect(Collectors.toList());
-			Comparator<Activity> compareByDate = (Activity o1, Activity o2) -> ((Kayaking) o1).getDateCompleted()
-					.compareTo(((Kayaking) o2).getDateCompleted());
-			Collections.sort(kayakingList, compareByDate.reversed());
+			Comparator<Activity> compareByID = (Activity o1, Activity o2) -> ((Kayaking) o1).getId()
+					.compareTo(((Kayaking) o2).getId());
+			Collections.sort(kayakingList, compareByID.reversed());
 			return util.getJSONForObject(kayakingList);
 		} else {
 			return "{\"message\": \"You have not completed any activities\"}";
@@ -85,44 +88,65 @@ public class ActivityDBRepository implements ActivityRepository {
 
 	public String updateActivity(String userEmail, String activityLog, int id) {
 		userDetails = manager.find(User.class, userEmail);
+		for (int i = 0; i < userDetails.getActivityList().size(); i++) {
+			if (userDetails.getActivityList().get(i).getId() == id) {
+				if (userDetails.getActivityList().get(i) instanceof Hiking) {
+					Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);
+					userDetails.getActivityList().get(i).setDescription(updatedActivity.getDescription());
+					userDetails.getActivityList().get(i).setLifelogDirectory(updatedActivity.getLifelogDirectory());
 
-		if (userDetails.getActivityList().get(id) instanceof Hiking) {
-			Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);
-			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());
-			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());
+					((Hiking) userDetails.getActivityList().get(i)).setEndDate(((Hiking) updatedActivity).getEndDate());
+					((Hiking) userDetails.getActivityList().get(i))
+							.setLengthMiles(((Hiking) updatedActivity).getLengthMiles());
+					((Hiking) userDetails.getActivityList().get(i))
+							.setLocation(((Hiking) updatedActivity).getLocation());
+					((Hiking) userDetails.getActivityList().get(i))
+							.setOfficialRouteName(((Hiking) updatedActivity).getOfficialRouteName());
+					((Hiking) userDetails.getActivityList().get(i))
+							.setStartDate(((Hiking) updatedActivity).getStartDate());
+					return "{\"ActivityUpdated\": \"Hiking\"}";
 
-			((Hiking) userDetails.getActivityList().get(id)).setEndDate(((Hiking) updatedActivity).getEndDate());
-			((Hiking) userDetails.getActivityList().get(id))
-					.setLengthMiles(((Hiking) updatedActivity).getLengthMiles());
-			((Hiking) userDetails.getActivityList().get(id)).setLocation(((Hiking) updatedActivity).getLocation());
-			((Hiking) userDetails.getActivityList().get(id))
-					.setOfficialRouteName(((Hiking) updatedActivity).getOfficialRouteName());
-			((Hiking) userDetails.getActivityList().get(id)).setStartDate(((Hiking) updatedActivity).getStartDate());
-		} else if (userDetails.getActivityList().get(id) instanceof Kayaking) {
-			Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);
-			userDetails.getActivityList().get(id).setDescription(updatedActivity.getDescription());
-			userDetails.getActivityList().get(id).setLifelogDirectory(updatedActivity.getLifelogDirectory());
-			((Kayaking) userDetails.getActivityList().get(id))
-					.setDateCompleted(((Kayaking) updatedActivity).getDateCompleted());
-			((Kayaking) userDetails.getActivityList().get(id))
-					.setDurationMins(((Kayaking) updatedActivity).getDurationMins());
-			((Kayaking) userDetails.getActivityList().get(id))
-					.setJourneyEnd(((Kayaking) updatedActivity).getJourneyEnd());
-			((Kayaking) userDetails.getActivityList().get(id))
-					.setJourneyStart(((Kayaking) updatedActivity).getJourneyStart());
+				} else if (userDetails.getActivityList().get(i) instanceof Kayaking) {
+					Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);
+					userDetails.getActivityList().get(i).setDescription(updatedActivity.getDescription());
+					userDetails.getActivityList().get(i).setLifelogDirectory(updatedActivity.getLifelogDirectory());
+					((Kayaking) userDetails.getActivityList().get(i))
+							.setDateCompleted(((Kayaking) updatedActivity).getDateCompleted());
+					((Kayaking) userDetails.getActivityList().get(i))
+							.setDurationMins(((Kayaking) updatedActivity).getDurationMins());
+					((Kayaking) userDetails.getActivityList().get(i))
+							.setJourneyEnd(((Kayaking) updatedActivity).getJourneyEnd());
+					((Kayaking) userDetails.getActivityList().get(i))
+							.setJourneyStart(((Kayaking) updatedActivity).getJourneyStart());
+					((Kayaking) userDetails.getActivityList().get(i))
+							.setLengthKilometers(((Kayaking) updatedActivity).getLengthKilometers());
+					return "{\"ActivityUpdated\": \"Kayaking\"}";
+				}
+			}
 		}
-		// return "{\"message\": \"Activity successfully updated\"}";
-		return activityLog;
+
+		return "{\"message\": \"Activity successfully updated\"}";
+		// return activityLog;
 
 	}
 
 	// delete
 	@Override
 	@Transactional(REQUIRED)
-
 	public String deleteActivity(String userEmail, int id) {
 		userDetails = manager.find(User.class, userEmail);
-		userDetails.getActivityList().remove(id);
+		for (int i = 0; i < userDetails.getActivityList().size(); i++) {
+			if (userDetails.getActivityList().get(i).getId() == id) {
+				if (userDetails.getActivityList().get(i) instanceof Hiking) {
+					userDetails.getActivityList().remove(i);
+					return "{\"ActivityRemoved\": \"Hiking\"}";
+				}
+				if (userDetails.getActivityList().get(i) instanceof Kayaking) {
+					userDetails.getActivityList().remove(i);
+					return "{\"ActivityRemoved\": \"Kayaking\"}";
+				}
+			}
+		}
 		return "{\"message\": \"activity successfully removed\"}";
 
 	}

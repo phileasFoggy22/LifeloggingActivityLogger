@@ -38,9 +38,9 @@ public class Version1IterationTest {
 				LocalDate.of(2014, 2, 27), 10, "Hilliest Hike");
 
 		newPaddle = new Kayaking("File/Area4", "gentle paddle", "Potato Wharf", "Anchorage", LocalDate.of(2014, 3, 20),
-				120);
+				120, 50);
 		returnPaddle = new Kayaking("File/Area5", "gentler paddle", "Anchorage", "Potato Wharf",
-				LocalDate.of(2014, 3, 20), 150);
+				LocalDate.of(2014, 3, 20), 150, 50);
 
 		newUser.getActivityList().add(newHike);
 		newUser.getActivityList().add(newerHike);

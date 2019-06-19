@@ -21,18 +21,17 @@ INSERT INTO ACTIVITY (DTYPE,DESCRIPTION,LIFELOGDIRECTORY,LENGTHMILES,LOCATION,OF
 INSERT INTO ACTIVITY (DTYPE,DESCRIPTION,LIFELOGDIRECTORY,LENGTHMILES,LOCATION,OFFICIALROUTENAME) VALUES ('Hiking','In at pede. Cras vulputate velit eu','amet orci.',397,'Assam','Guwahati'),('Hiking','eu erat semper rutrum. Fusce','sem',743,'AB','Peterhead'),('Hiking','blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum','mattis ornare,',192,'Zeeland','Sluis'),('Hiking','est, vitae sodales nisi magna sed dui. Fusce aliquam, enim','arcu. Aliquam',400,'Emilia-Romagna','Viano'),('Hiking','aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a','ipsum',312,'Wie','Vienna'),('Hiking','vestibulum. Mauris magna. Duis dignissim','nulla. Cras eu',274,'BE','Berlin'),('Hiking','tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod','natoque penatibus et',355,'KS','Wichita'),('Hiking','Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae,','sociis natoque penatibus',553,'Valparaíso','El Tabo'),('Hiking','in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer','enim.',288,'Atacama','Freirina'),('Hiking','dolor, tempus non, lacinia at,','Nullam enim. Sed',722,'RJ','São João de Meriti');
 INSERT INTO ACTIVITY (DTYPE,DESCRIPTION,LIFELOGDIRECTORY,LENGTHMILES,LOCATION,OFFICIALROUTENAME) VALUES ('Hiking','bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque','et nunc.',61,'South Island','Westport'),('Hiking','nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus','parturient montes, nascetur',328,'MH','Aurangabad'),('Hiking','vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque','vitae, erat.',302,'San José','Patalillo'),('Hiking','gravida non, sollicitudin a, malesuada id,','egestas. Duis',570,'Vienna','Vienna'),('Hiking','Nunc lectus','lorem ipsum sodales',466,'Gelderland','Huissen'),('Hiking','nunc sit amet metus. Aliquam erat volutpat. Nulla','vel est',722,'BB','Wandlitz'),('Hiking','turpis non enim. Mauris quis turpis vitae purus','eu enim.',222,'Hat','İskenderun'),('Hiking','Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus','ac mattis',301,'IL','Courbevoie'),('Hiking','Aliquam ornare, libero at auctor','vel',318,'Minas Gerais','Ribeirão das Neves'),('Hiking','venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec','iaculis nec, eleifend',497,'Chhattisgarh','Raipur');
 
-INSERT INTO ACTIVITY (DTYPE,DESCRIPTION,LIFELOGDIRECTORY,durationMins,journeyStart,journeyEnd) 
-VALUES ('Kayaking',
-        'bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque',
-        'et nunc.',
-        61,'South Island','Westport'),
-('Kayaking','nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus','parturient montes, nascetur',328,'MH','Aurangabad');
-
+INSERT INTO ACTIVITY (DTYPE,DESCRIPTION,LIFELOGDIRECTORY,durationMins,journeyStart,journeyEnd,lengthKilometers) 
+VALUES ('Kayaking', 'bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque',
+        'et nunc.', 61,'South Island','Westport',60),
+('Kayaking','nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus',
+ 'parturient montes, nascetur',328,'MH','Aurangabad',60);
+Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',102);
+Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',101);
 
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',17);
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',18);
-Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',102);
-Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',101);
+
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',19);
 Insert into USER_ACTIVITY  values ('Nulla@Aliquam.com',20);
 Insert into USER_ACTIVITY  values ('odio@sodales.edu',21);
