@@ -238,15 +238,18 @@ function recentHikingActivities() {
                     btnUpdate.style.display = "none";
                     btn.style.display = "block";
 
-                    var bodyJSON = {
-                        "officialRouteName": titleh2Input.value,
-                        "location": h6locInput.value,
-                        "lengthMiles": h6milesInput.value,
-                        "description": pdescInput.value,
-                        "lifelogDirectory": fdirInput.value,
-                        "startDate": dateh4Input.value,
-                        "endDate": dateh4Input2.value
-                    };
+                    let bodyJSON = {};
+                    bodyJSON["officialRouteName"] = titleh2Input.value
+
+                    console.log(bodyJSON);
+                    //,
+                    //                        "location": h6locInput.value,
+                    //                        "lengthMiles": h6milesInput.value,
+                    //                        "description": pdescInput.value,
+                    //                        "lifelogDirectory": fdirInput.value,
+                    //                        "startDate": dateh4Input.value,
+                    //                        "endDate": dateh4Input2.value
+                    //                        };
 
 
 
