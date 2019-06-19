@@ -175,20 +175,7 @@
 
 		
     </dependencies>
-    
-    <profiles>
-		<profile>
-			<id>deploy</id>
-			<build>
-				<directory>C:\Users\Admin\Downloads\wildfly-10.0.0.Final\standalone\deployments
-			
-			</directory>
-			</build>
-		</profile>
-		
 
-		
-	</profiles>
 	<reporting>
 	        <plugins>           
 	            <plugin>
@@ -240,14 +227,14 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
             </plugin>
-        <!--<plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.6.1</version>
           <configuration>
 
           </configuration>
-        </plugin>-->
+        </plugin>
         
         
         
