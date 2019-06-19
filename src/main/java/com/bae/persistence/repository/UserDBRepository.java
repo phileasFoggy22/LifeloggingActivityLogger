@@ -13,6 +13,7 @@ import javax.transaction.Transactional.TxType;
 import com.bae.persistence.domain.User;
 import com.bae.util.JSONUtil;
 
+
 @Transactional(SUPPORTS)
 @Default
 public class UserDBRepository implements UserRepository {
@@ -41,7 +42,8 @@ public class UserDBRepository implements UserRepository {
 		TypedQuery<User> query = manager.createQuery("SELECT a FROM User a", User.class);
 		return util.getJSONForObject(query.getResultList());
 	}
-
+	
+	
 	@Override
 	@Transactional(TxType.REQUIRED)
 	public String updateUser(String userJSON, String userEmail) {
@@ -60,9 +62,9 @@ public class UserDBRepository implements UserRepository {
 	public String deleteUser(String userEmail) {
 		User aUser = manager.find(User.class, userEmail);
 		manager.remove(aUser);
-		return "{\"message\": \"User successfully removed\"}";
+		return "{\"message\": \"User sucessfully removed\"}";
 	}
-
+	
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
 	}
