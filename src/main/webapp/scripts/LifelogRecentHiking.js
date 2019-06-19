@@ -257,9 +257,10 @@ function recentHikingActivities() {
                     if (dateh4Input.value.toString() != "") {
 
                         let dateStart = new Date(dateh4Input.value.toString());
+                        console.log(dateStart);
                         bodyJSON["startDate"] = dateStart.toJSON();
                     }
-                    if (dateh4Input.value.toString() != "") {
+                    if (dateh4Input2.value.toString() != "") {
                         let dateEnd = new Date(dateh4Input2.value.toString());
                         bodyJSON["endDate"] = dateEnd.toJSON();
                     }

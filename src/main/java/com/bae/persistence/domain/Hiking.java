@@ -4,13 +4,15 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Hiking extends Activity {
 
 	@Column(length = 50, nullable = true)
 	private String location;
-	@Column(length = 50, nullable = true)
+	@Temporal(TemporalType.DATE, nullable = true)
 	private LocalDate startDate;
 	@Column(length = 50, nullable = true)
 	private LocalDate endDate;
