@@ -239,20 +239,32 @@ function recentHikingActivities() {
                     btn.style.display = "block";
 
                     let bodyJSON = {};
-                    bodyJSON["officialRouteName"] = titleh2Input.value
+                    if (titleh2Input.value != "") {
+                        bodyJSON["officialRouteName"] = titleh2Input.value;
+                    }
+                    if (h6locInput.value != "") {
+                        bodyJSON["location"] = h6locInput.value;
+                    }
+                    if (h6milesInput.value != "") {
+                        bodyJSON["lengthMiles"] = h6milesInput.value;
+                    }
+                    if (pdescInput.value != "") {
+                        bodyJSON["description"] = pdescInput.value;
+                    }
+                    if (fdirInput.value != "") {
+                        bodyJSON["lifelogDirectory"] = fdirInput.value;
+                    }
+                    if (dateh4Input.value.toString() != "") {
 
-                    console.log(bodyJSON);
-                    //,
-                    //                        "location": h6locInput.value,
-                    //                        "lengthMiles": h6milesInput.value,
-                    //                        "description": pdescInput.value,
-                    //                        "lifelogDirectory": fdirInput.value,
-                    //                        "startDate": dateh4Input.value,
-                    //                        "endDate": dateh4Input2.value
-                    //                        };
+                        let dateStart = new Date(dateh4Input.value.toString());
+                        bodyJSON["startDate"] = dateStart.toJSON();
+                    }
+                    if (dateh4Input.value.toString() != "") {
+                        let dateEnd = new Date(dateh4Input2.value.toString());
+                        bodyJSON["endDate"] = dateEnd.toJSON();
+                    }
 
-
-
+                    console.log("here now: " + bodyJSON);
                     updateActivity(id, bodyJSON);
                 }
             })(newobj1[i]["id"]);

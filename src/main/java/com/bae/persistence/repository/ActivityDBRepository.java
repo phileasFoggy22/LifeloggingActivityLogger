@@ -150,4 +150,12 @@ public class ActivityDBRepository implements ActivityRepository {
 		return "{\"message\": \"activity successfully removed\"}";
 
 	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
+	public void setUtil(JSONUtil util) {
+		this.util = util;
+	}
 }
