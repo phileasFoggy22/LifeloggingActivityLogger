@@ -8,6 +8,10 @@
     <title dir="ltr">Lifelogging</title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="../scripts/LifelogMain.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogRecentActivities.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogRecentHiking.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogRecentKayaking.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogUpdate.js"></script>
 </head>
 
 <body onload="setUpPage()">
@@ -41,10 +45,10 @@
                                     <button type="button" class="btn btn-warning">
                                         All Activities
                                     </button>
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success" onclick="recentHikingActivities()">
                                         Hiking
                                     </button>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" onclick="recentKayakingActivities()">
                                         Kayaking
                                     </button>
                                 </div>

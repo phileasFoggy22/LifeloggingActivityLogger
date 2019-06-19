@@ -61,7 +61,7 @@ public class ActivityEndpoint {
 	}
 
 	// Delete
-	@Path("/deleteActivity/{email}/{id}")
+	@Path("/removeActivity/{email}/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 

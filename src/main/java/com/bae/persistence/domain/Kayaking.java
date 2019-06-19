@@ -16,14 +16,25 @@ public class Kayaking extends Activity {
 	private LocalDate dateCompleted;
 	@Column(length = 3, nullable = true)
 	private int durationMins;
+	@Column(length = 4, nullable = true)
+	private int lengthKilometers;
 
 	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,
-			LocalDate localDate, int durationMins) {
+			LocalDate localDate, int durationMins, int lengthKilometers) {
 		super(lifelogDirectory, description);
 		this.journeyStart = journeyStart;
 		this.journeyEnd = journeyEnd;
 		this.dateCompleted = localDate;
 		this.durationMins = durationMins;
+		this.lengthKilometers = lengthKilometers;
+	}
+
+	public int getLengthKilometers() {
+		return lengthKilometers;
+	}
+
+	public void setLengthKilometers(int lengthKilometers) {
+		this.lengthKilometers = lengthKilometers;
 	}
 
 	public Kayaking() {
