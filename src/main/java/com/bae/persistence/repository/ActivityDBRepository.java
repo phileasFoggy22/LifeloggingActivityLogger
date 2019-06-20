@@ -3,9 +3,12 @@ package com.bae.persistence.repository;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
@@ -13,6 +16,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import org.apache.log4j.Level;
 
 import com.bae.persistence.domain.Activity;
 import com.bae.persistence.domain.Hiking;
@@ -45,7 +50,13 @@ public class ActivityDBRepository implements ActivityRepository {
 	@Override
 	public String getAnActivity(String userEmail, int id) {
 		userDetails = manager.find(User.class, userEmail);
-		return util.getJSONForObject(userDetails.getActivityList().get(id));
+		for (int i = 0; i < userDetails.getActivityList().size(); i++) {
+			if (userDetails.getActivityList().get(i).getId() == id) {
+				return util.getJSONForObject(userDetails.getActivityList().get(i));
+			}
+		}
+		return "{\"message\": \"Activity not found\"}";
+
 	}
 
 	@Override
@@ -61,9 +72,9 @@ public class ActivityDBRepository implements ActivityRepository {
 
 		if (category.equalsIgnoreCase("hiking")) {
 			// Was by start date before null values caused errors
-			List<Activity> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking)
+			List<Hiking> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking).map(a -> (Hiking) a)
 					.collect(Collectors.toList());
-			Comparator<Activity> compareByRecentID = (Activity o1, Activity o2) -> ((Hiking) o1).getId()
+			Comparator<Hiking> compareByRecentID = (Hiking o1, Hiking o2) -> ((Hiking) o1).getId()
 					.compareTo(((Hiking) o2).getId());
 			Collections.sort(hikingList, compareByRecentID.reversed());
 			return util.getJSONForObject(hikingList);
@@ -85,26 +96,30 @@ public class ActivityDBRepository implements ActivityRepository {
 	// update
 	@Override
 	@Transactional(REQUIRED)
-
 	public String updateActivity(String userEmail, String activityLog, int id) {
 		userDetails = manager.find(User.class, userEmail);
 		for (int i = 0; i < userDetails.getActivityList().size(); i++) {
 			if (userDetails.getActivityList().get(i).getId() == id) {
+				String res = userDetails.getActivityList().get(i).getClass().toString();
+//				return "{\"ActivityUpdated\":\""+res+"\"}";
 				if (userDetails.getActivityList().get(i) instanceof Hiking) {
 					Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);
+
 					userDetails.getActivityList().get(i).setDescription(updatedActivity.getDescription());
 					userDetails.getActivityList().get(i).setLifelogDirectory(updatedActivity.getLifelogDirectory());
+					if (updatedActivity.getEndDate() != null) {
+						((Hiking) userDetails.getActivityList().get(i)).setEndDate(updatedActivity.getEndDate());
+					}
+					((Hiking) userDetails.getActivityList().get(i)).setLengthMiles(updatedActivity.getLengthMiles());
 
-					((Hiking) userDetails.getActivityList().get(i)).setEndDate(((Hiking) updatedActivity).getEndDate());
+					((Hiking) userDetails.getActivityList().get(i)).setLocation(updatedActivity.getLocation());
 					((Hiking) userDetails.getActivityList().get(i))
-							.setLengthMiles(((Hiking) updatedActivity).getLengthMiles());
-					((Hiking) userDetails.getActivityList().get(i))
-							.setLocation(((Hiking) updatedActivity).getLocation());
-					((Hiking) userDetails.getActivityList().get(i))
-							.setOfficialRouteName(((Hiking) updatedActivity).getOfficialRouteName());
-					((Hiking) userDetails.getActivityList().get(i))
-							.setStartDate(((Hiking) updatedActivity).getStartDate());
-					return "{\"ActivityUpdated\": \"Hiking\"}";
+							.setOfficialRouteName(updatedActivity.getOfficialRouteName());
+
+					if (updatedActivity.getStartDate() != null) {
+						((Hiking) userDetails.getActivityList().get(i)).setStartDate(updatedActivity.getStartDate());
+					}
+					return "{\"message\": \"Activity successfully updated\"}";
 
 				} else if (userDetails.getActivityList().get(i) instanceof Kayaking) {
 					Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);
@@ -121,10 +136,11 @@ public class ActivityDBRepository implements ActivityRepository {
 					((Kayaking) userDetails.getActivityList().get(i))
 							.setLengthKilometers(((Kayaking) updatedActivity).getLengthKilometers());
 					return "{\"ActivityUpdated\": \"Kayaking\"}";
+//					return "{\"message\": \"Activity "+i+" successfully updated\"}";
 				}
+				return "{\"ActivityUpdated\":\"" + res + "\"}";
 			}
 		}
-
 		return "{\"message\": \"Activity successfully updated\"}";
 		// return activityLog;
 
@@ -148,7 +164,6 @@ public class ActivityDBRepository implements ActivityRepository {
 			}
 		}
 		return "{\"message\": \"activity successfully removed\"}";
-
 	}
 
 	public void setManager(EntityManager manager) {
