@@ -1,28 +1,26 @@
 package com.bae.persistence.domain;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Hiking extends Activity {
 
 	@Column(length = 50, nullable = true)
 	private String location;
-	@Temporal(TemporalType.DATE, nullable = true)
-	private LocalDate startDate;
-	@Column(length = 50, nullable = true)
-	private LocalDate endDate;
+	@Column(nullable = true)
+	private java.sql.Date startDate;
+	@Column(nullable = true)
+	private java.sql.Date endDate;
 	@Column(length = 5, nullable = true)
 	private int lengthMiles;
 	@Column(length = 200, nullable = true)
 	private String officialRouteName;
 
-	public Hiking(String lifelogDirectory, String description, String location, LocalDate localDate,
-			LocalDate localDate2, int lengthMiles, String officialRouteName) {
+	public Hiking(String lifelogDirectory, String description, String location, Date localDate, Date localDate2,
+			int lengthMiles, String officialRouteName) {
 		super(lifelogDirectory, description);
 		this.location = location;
 		this.startDate = localDate;
@@ -43,19 +41,19 @@ public class Hiking extends Activity {
 		this.location = location;
 	}
 
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 

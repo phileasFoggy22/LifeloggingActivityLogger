@@ -34,4 +34,9 @@ public class UserServiceImp implements UserService {
 		return userRepo.getAllUsers();
 	}
 
+	public void setRepository(UserRepository userRepo) {
+		this.userRepo = userRepo;
+
+	}
+
 }

@@ -44,4 +44,8 @@ public class ActivityServiceImp implements ActivityService {
 
 	}
 
+	public void setRepository(ActivityRepository actRepo) {
+		this.actRepo = actRepo;
+	}
+
 }

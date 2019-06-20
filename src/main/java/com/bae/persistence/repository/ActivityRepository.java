@@ -19,5 +19,4 @@ public interface ActivityRepository {
 	// Delete
 	String deleteActivity(String userEmail, int id);
 
-
 }

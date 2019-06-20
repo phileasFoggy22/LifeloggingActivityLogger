@@ -69,4 +69,8 @@ public class ActivityEndpoint {
 
 		return service.deleteActivity(userEmail, id);
 	}
+
+	public void setService(ActivityService service) {
+		this.service = service;
+	}
 }

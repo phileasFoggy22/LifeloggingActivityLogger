@@ -2,7 +2,6 @@ package com.bae.persistence.domain.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -30,17 +29,17 @@ public class Version1IterationTest {
 	public void start() {
 		newUser = new User("L.Cravensworth@gmail.com", "Laszlo Cravensworth", "password");
 
-		newHike = new Hiking("File/Area", "long hike, feet hurt", "field", LocalDate.of(2014, 2, 14),
-				LocalDate.of(2014, 2, 15), 10, "Hilly Hike");
-		newerHike = new Hiking("File/Area2", "longer hike, feet hurt more", "hill", LocalDate.of(2014, 2, 16),
-				LocalDate.of(2014, 2, 18), 10, "Hillier Hike");
-		newestHike = new Hiking("File/Area3", "longest hike, feet in agony", "mountain", LocalDate.of(2014, 2, 20),
-				LocalDate.of(2014, 2, 27), 10, "Hilliest Hike");
+		newHike = new Hiking("File/Area", "long hike, feet hurt", "field", java.sql.Date.valueOf("2017-11-15"),
+				java.sql.Date.valueOf("2017-11-16"), 10, "Hilly Hike");
+		newerHike = new Hiking("File/Area2", "longer hike, feet hurt more", "hill", java.sql.Date.valueOf("2017-11-15"),
+				java.sql.Date.valueOf("2017-11-15"), 10, "Hillier Hike");
+		newestHike = new Hiking("File/Area3", "longest hike, feet in agony", "mountain",
+				java.sql.Date.valueOf("2017-11-15"), java.sql.Date.valueOf("2017-11-15"), 10, "Hilliest Hike");
 
-		newPaddle = new Kayaking("File/Area4", "gentle paddle", "Potato Wharf", "Anchorage", LocalDate.of(2014, 3, 20),
-				120, 50);
+		newPaddle = new Kayaking("File/Area4", "gentle paddle", "Potato Wharf", "Anchorage",
+				java.sql.Date.valueOf("2017-11-15"), 120, 50);
 		returnPaddle = new Kayaking("File/Area5", "gentler paddle", "Anchorage", "Potato Wharf",
-				LocalDate.of(2014, 3, 20), 150, 50);
+				java.sql.Date.valueOf("2017-11-15"), 150, 50);
 
 		newUser.getActivityList().add(newHike);
 		newUser.getActivityList().add(newerHike);
@@ -85,7 +84,7 @@ public class Version1IterationTest {
 		Comparator<Activity> compareByStartDate = (Activity o1, Activity o2) -> ((Hiking) o1).getStartDate()
 				.compareTo(((Hiking) o2).getStartDate());
 		Collections.sort(hikingList, compareByStartDate.reversed());
-		assertEquals("2014-02-16", ((Hiking) hikingList.get(0)).getStartDate().toString());
+		assertEquals("2017-11-15", ((Hiking) hikingList.get(0)).getStartDate().toString());
 
 	}
 
@@ -96,7 +95,7 @@ public class Version1IterationTest {
 		Comparator<Activity> compareByDate = (Activity o1, Activity o2) -> ((Kayaking) o1).getDateCompleted()
 				.compareTo(((Kayaking) o2).getDateCompleted());
 		Collections.sort(kayakingList, compareByDate.reversed());
-		assertEquals("2014-03-20", ((Kayaking) kayakingList.get(0)).getDateCompleted().toString());
+		assertEquals("2017-11-15", ((Kayaking) kayakingList.get(0)).getDateCompleted().toString());
 	}
 
 	@Test
@@ -110,7 +109,7 @@ public class Version1IterationTest {
 	public void updateHikingActivity() {
 		// update activity 1 for user 1
 		assertEquals(
-				"Hiking [location=field, startDate=2014-02-14, endDate=2014-02-15, lengthMiles=10, officialRouteName=Hilly Hike]",
+				"Hiking [location=field, startDate=2017-11-15, endDate=2017-11-16, lengthMiles=10, officialRouteName=Hilly Hike]",
 				newUser.getActivityList().get(0).toString());
 		newUser.getActivityList().get(0).setDescription(newestHike.getDescription());
 		newUser.getActivityList().get(0).setLifelogDirectory(newestHike.getLifelogDirectory());
@@ -120,14 +119,14 @@ public class Version1IterationTest {
 		((Hiking) newUser.getActivityList().get(0)).setOfficialRouteName(((Hiking) newestHike).getOfficialRouteName());
 		((Hiking) newUser.getActivityList().get(0)).setEndDate(((Hiking) newestHike).getEndDate());
 		assertEquals(
-				"Hiking [location=mountain, startDate=2014-02-20, endDate=2014-02-27, lengthMiles=10, officialRouteName=Hilliest Hike]",
+				"Hiking [location=mountain, startDate=2017-11-15, endDate=2017-11-15, lengthMiles=10, officialRouteName=Hilliest Hike]",
 				newUser.getActivityList().get(0).toString());
 	}
 
 	@Test
 	public void updateKayakingActivity() {
 		assertEquals(
-				"Kayaking [journeyStart=Potato Wharf, journeyEnd=Anchorage, dateCompleted=2014-03-20, durationMins=120]",
+				"Kayaking [journeyStart=Potato Wharf, journeyEnd=Anchorage, dateCompleted=2017-11-15, durationMins=120]",
 				newUser.getActivityList().get(2).toString());
 		newUser.getActivityList().get(2).setDescription(returnPaddle.getDescription());
 		newUser.getActivityList().get(2).setLifelogDirectory(returnPaddle.getLifelogDirectory());
@@ -136,7 +135,7 @@ public class Version1IterationTest {
 		((Kayaking) newUser.getActivityList().get(2)).setDateCompleted(((Kayaking) returnPaddle).getDateCompleted());
 		((Kayaking) newUser.getActivityList().get(2)).setDurationMins(((Kayaking) returnPaddle).getDurationMins());
 		assertEquals(
-				"Kayaking [journeyStart=Anchorage, journeyEnd=Potato Wharf, dateCompleted=2014-03-20, durationMins=150]",
+				"Kayaking [journeyStart=Anchorage, journeyEnd=Potato Wharf, dateCompleted=2017-11-15, durationMins=150]",
 				newUser.getActivityList().get(2).toString());
 	}
 
