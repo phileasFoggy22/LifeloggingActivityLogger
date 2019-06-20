@@ -1,6 +1,6 @@
 package com.bae.persistence.domain;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,18 +13,18 @@ public class Kayaking extends Activity {
 	@Column(length = 50, nullable = true)
 	private String journeyEnd;
 	@Column(length = 50, nullable = true)
-	private LocalDate dateCompleted;
+	private java.sql.Date dateCompleted;
 	@Column(length = 3, nullable = true)
 	private int durationMins;
 	@Column(length = 4, nullable = true)
 	private int lengthKilometers;
 
 	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,
-			LocalDate localDate, int durationMins, int lengthKilometers) {
+			Date dateCompleted, int durationMins, int lengthKilometers) {
 		super(lifelogDirectory, description);
 		this.journeyStart = journeyStart;
 		this.journeyEnd = journeyEnd;
-		this.dateCompleted = localDate;
+		this.dateCompleted = dateCompleted;
 		this.durationMins = durationMins;
 		this.lengthKilometers = lengthKilometers;
 	}
@@ -57,11 +57,11 @@ public class Kayaking extends Activity {
 		this.journeyEnd = journeyEnd;
 	}
 
-	public LocalDate getDateCompleted() {
+	public Date getDateCompleted() {
 		return dateCompleted;
 	}
 
-	public void setDateCompleted(LocalDate dateCompleted) {
+	public void setDateCompleted(Date dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 

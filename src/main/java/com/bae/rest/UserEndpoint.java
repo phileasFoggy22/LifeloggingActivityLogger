@@ -9,13 +9,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.bae.business.service.UserServiceImp;
+import com.bae.business.service.UserService;
 
 @Path("/users")
 public class UserEndpoint {
 
 	@Inject
-	private UserServiceImp service;
+	private UserService service;
 
 	// Create
 	@Path("/createUser")
@@ -56,5 +56,9 @@ public class UserEndpoint {
 	@Produces({ "application/json" })
 	public String deleteUser(@PathParam("email") String userEmail) {
 		return service.deleteUser(userEmail);
+	}
+
+	public void setService(UserService service) {
+		this.service = service;
 	}
 }
