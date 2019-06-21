@@ -1,7 +1,5 @@
 package com.bae.rest;
 
-import java.time.LocalDate;
-
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,8 +10,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.bae.business.service.ActivityService;
-import com.bae.persistence.domain.Hiking;
-import com.bae.util.JSONUtil;
 
 @Path("/activities")
 public class ActivityEndpoint {
@@ -44,13 +40,14 @@ public class ActivityEndpoint {
 	public String getAllActivities(@PathParam("email") String userEmail) {
 		return service.getAllActivities(userEmail);
 	}
-	
-	@Path("/fuckThis")
-	@GET
-	@Produces({ "application/json" })
-	public String getAllActivities() {
-		return new JSONUtil().getJSONForObject(new Hiking("a", "b", "c", LocalDate.now(), LocalDate.now(), 4494, "d"));
-	}
+
+	// @Path("/fuckThis")
+	// @GET
+	// @Produces({ "application/json" })
+	// public String getAllActivities() {
+	// return new JSONUtil().getJSONForObject(new Hiking("a", "b", "c",
+	// LocalDate.now(), LocalDate.now(), 4494, "d"));
+	// }
 
 	// Read
 	@Path("/getActivitiesByCategory/{email}/{category}")

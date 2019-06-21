@@ -44,11 +44,14 @@ function recentHikingActivities() {
 
             dateh4.innerHTML = "";
             if (newobj1[i]["startDate"] != null) {
-                dateh4.innerHTML += 'Start: ' + newobj1[i]["startDate"] + '  ';
+                dateh4.innerHTML += newobj1[i]["startDate"]["day"] + ' ' + newobj1[i]["startDate"]["month"] + ' ' + newobj1[i]["startDate"]["year"];
                 dateh4Input.value = newobj1[i]["startDate"];
-            }
-            if (newobj1[i]["endDate"] != null) {
-                dateh4.innerHTML += 'End ' + newobj1[i]["endDate"];
+                if (newobj1[i]["endDate"] != null) {
+                    dateh4.innerHTML += 'to ' + newobj1[i]["endDate"]["day"] + ' ' + newobj1[i]["endDate"]["month"] + ' ' + newobj1[i]["endDate"]["year"];
+                    dateh4Input2.value = newobj1[i]["endDate"];
+                }
+            } else if (newobj1[i]["endDate"] != null) {
+                dateh4.innerHTML += newobj1[i]["endDate"]["day"] + ' ' + newobj1[i]["endDate"]["month"] + ' ' + newobj1[i]["endDate"]["year"];
                 dateh4Input2.value = newobj1[i]["endDate"];
             }
             if ((newobj1[i]["endDate"] == null) && (newobj1[i]["startDate"] == null)) {
