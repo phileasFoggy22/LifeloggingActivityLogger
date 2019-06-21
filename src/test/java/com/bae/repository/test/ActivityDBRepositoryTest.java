@@ -1,6 +1,5 @@
 package com.bae.repository.test;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,16 +47,16 @@ public class ActivityDBRepositoryTest {
 		actRepo.setUtil(util);
 	}
 
-//	@Test
-//	public void testFetchAllActivities() {
-//
-//		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
-//		user.getActivityList().add(newHike);
-//		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
-//		Assert.assertEquals(actRepo.getAllActivities(MOCK_VALUE),
-//				"[{\"location\":\"field\",\"startDate\":\"Jun 4, 2019 12:00:00 AM\",\"endDate\":\"Jun 4, 2019 12:00:00 AM\",\"lengthMiles\":10,\"officialRouteName\":\"Hilly Hike\",\"lifelogDirectory\":\"File/Area\",\"description\":\"long hike, feet hurt\"}]");
-//
-//	}
+	// @Test
+	public void testFetchAllActivities() {
+
+		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
+		user.getActivityList().add(newHike);
+		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
+		Assert.assertEquals(actRepo.getAllActivities(MOCK_VALUE),
+				"[{\"location\":\"field\",\"startDate\":\"Jun 4, 2019 12:00:00 AM\",\"endDate\":\"Jun 4, 2019 12:00:00 AM\",\"lengthMiles\":10,\"officialRouteName\":\"Hilly Hike\",\"lifelogDirectory\":\"File/Area\",\"description\":\"long hike, feet hurt\"}]");
+
+	}
 
 	@Test
 	public void testFetchAllActivitiesByCategory() {
@@ -74,7 +73,7 @@ public class ActivityDBRepositoryTest {
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
 		String reply = actRepo.getAnActivity(MOCK_VALUE, MOCK_VALUE4);
 		Assert.assertEquals(reply, "{\"message\": \"Activity not found\"}");
-	
+
 	}
 
 	// @Test

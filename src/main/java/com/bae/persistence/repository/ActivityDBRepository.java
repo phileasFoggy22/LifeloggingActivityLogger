@@ -3,12 +3,9 @@ package com.bae.persistence.repository;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
@@ -16,8 +13,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import org.apache.log4j.Level;
 
 import com.bae.persistence.domain.Activity;
 import com.bae.persistence.domain.Hiking;
@@ -72,8 +67,8 @@ public class ActivityDBRepository implements ActivityRepository {
 
 		if (category.equalsIgnoreCase("hiking")) {
 			// Was by start date before null values caused errors
-			List<Hiking> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking).map(a -> (Hiking) a)
-					.collect(Collectors.toList());
+			List<Hiking> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking)
+					.map(a -> (Hiking) a).collect(Collectors.toList());
 			Comparator<Hiking> compareByRecentID = (Hiking o1, Hiking o2) -> ((Hiking) o1).getId()
 					.compareTo(((Hiking) o2).getId());
 			Collections.sort(hikingList, compareByRecentID.reversed());
@@ -101,7 +96,6 @@ public class ActivityDBRepository implements ActivityRepository {
 		for (int i = 0; i < userDetails.getActivityList().size(); i++) {
 			if (userDetails.getActivityList().get(i).getId() == id) {
 				String res = userDetails.getActivityList().get(i).getClass().toString();
-//				return "{\"ActivityUpdated\":\""+res+"\"}";
 				if (userDetails.getActivityList().get(i) instanceof Hiking) {
 					Hiking updatedActivity = util.getObjectForJSON(activityLog, Hiking.class);
 
@@ -136,14 +130,11 @@ public class ActivityDBRepository implements ActivityRepository {
 					((Kayaking) userDetails.getActivityList().get(i))
 							.setLengthKilometers(((Kayaking) updatedActivity).getLengthKilometers());
 					return "{\"ActivityUpdated\": \"Kayaking\"}";
-//					return "{\"message\": \"Activity "+i+" successfully updated\"}";
 				}
 				return "{\"ActivityUpdated\":\"" + res + "\"}";
 			}
 		}
 		return "{\"message\": \"Activity successfully updated\"}";
-		// return activityLog;
-
 	}
 
 	// delete

@@ -1,8 +1,6 @@
 package com.bae.persistence.domain;
 
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,43 +13,19 @@ public class Kayaking extends Activity {
 	@Column(length = 50, nullable = true)
 	private String journeyEnd;
 	@Column(length = 50, nullable = true)
-	private Date dateCompleted;
+	private LocalDate dateCompleted;
 	@Column(length = 3, nullable = true)
 	private int durationMins;
 	@Column(length = 4, nullable = true)
 	private int lengthKilometers;
 
 	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,
-			String dateCompleted, int durationMins, int lengthKilometers) {
+			LocalDate dateCompleted, int durationMins, int lengthKilometers) {
 		super(lifelogDirectory, description);
 		this.journeyStart = journeyStart;
 		this.journeyEnd = journeyEnd;
-		if(dateCompleted.length()==10) {
-			SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		else if(dateCompleted.length()==24)
-		{
-			SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		else if(dateCompleted.length()==28)
-		{
-			SimpleDateFormat formatter1=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
+
+		this.dateCompleted = dateCompleted;
 		this.durationMins = durationMins;
 		this.lengthKilometers = lengthKilometers;
 	}
@@ -84,38 +58,12 @@ public class Kayaking extends Activity {
 		this.journeyEnd = journeyEnd;
 	}
 
-	public String getDateCompleted() {
-		return dateCompleted.toString();
+	public LocalDate getDateCompleted() {
+		return dateCompleted;
 	}
 
-	public void setDateCompleted(String dateCompleted) {
-		if(dateCompleted.length()==10) {
-			SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		else if(dateCompleted.length()==24)
-		{
-			System.out.println("here: "+dateCompleted);
-			SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		else if(dateCompleted.length()==28)
-		{
-			SimpleDateFormat formatter1=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");  	
-			try {
-				this.dateCompleted = formatter1.parse(dateCompleted);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
+	public void setDateCompleted(LocalDate dateCompleted) {
+		this.dateCompleted = dateCompleted;
 	}
 
 	public int getDurationMins() {
