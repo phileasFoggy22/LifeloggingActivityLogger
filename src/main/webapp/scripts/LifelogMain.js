@@ -102,6 +102,51 @@ function addNewHikingActivity() {
 
 function addHike() {
 
+    let AHtitleh2Input = document.getElementById("AddHikeRouteName").value;
+    let AHh6locInput = document.getElementById("AddHikeLocation").value;
+    let AHh6milesInput = document.getElementById("AddHikeDistance").value;
+    let AHpdescInput = document.getElementById("AddHikeDescription").value;
+    let AHfdirInput = document.getElementById("AddHikeLifelog").value;
+    let AHdateStart = document.getElementById("AddHikeStartDate").value;
+    let AHdateEnd = document.getElementById("AddHikeEndDate").value;
+
+    console.log(formatDate(AHdateStart));
+
+    let AHbodyJSON = {};
+    if (AHtitleh2Input.value != "") {
+        AHbodyJSON["officialRouteName"] = AHtitleh2Input.value;
+    }
+    if (AHh6locInput.value != "") {
+        AHbodyJSON["location"] = AHh6locInput.value;
+    }
+    if (AHh6milesInput.value != "") {
+        AHbodyJSON["lengthMiles"] = AHh6milesInput.value;
+    }
+    if (AHpdescInput.value != "") {
+        AHbodyJSON["description"] = AHpdescInput.value;
+    }
+    if (AHfdirInput.value != "") {
+        AHbodyJSON["lifelogDirectory"] = AHfdirInput.value;
+    }
+    if (AHdateStart.value != null) {
+        //        let dateStart2 = new Date(dateStart.value.toString());
+        AHbodyJSON["startDate"] = formatDate(AHdateStart);
+    }
+    if (AHdateEnd.value != null) {
+        //        let dateEnd2 = new Date(dateEnd.value.toString());
+        AHbodyJSON["endDate"] = formatDate(AHdateEnd);
+    }
+    console.log("here");
+    console.log(AHbodyJSON);
+    makeRequest("POST", URLstring + "activities/createActivity/" + userEmail, AHbodyJSON).then((resolve) => {
+        console.log("It worked");
+    })
+
+
+}
+
+function formatDate(date) {
+    return "{\"year\": " + date.substring(0, 4) + ",\"month\": " + date.substring(5, 7) + ",\"day\": " + date.substring(9, 10) + "}";
 }
 
 

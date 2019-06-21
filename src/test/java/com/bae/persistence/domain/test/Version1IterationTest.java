@@ -3,6 +3,7 @@ package com.bae.persistence.domain.test;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -47,8 +48,49 @@ public class Version1IterationTest {
 
 	}
 
+	@Test
+	public void userEmails() {
+		newUser.setUserEmail("N.Cravensworth@gmail.com");
+		assertEquals("N.Cravensworth@gmail.com", newUser.getUserEmail());
+	}
+	@Test
+	public void userName() {
+		newUser.setUserName("test");
+		assertEquals("test", newUser.getUserName());
+	}
+	@Test
+	public void userPassword() {
+		newUser.setUserPassword("test");
+		assertEquals("test", newUser.getUserPassword());
+	}
+	
+	@Test
+	public void userActions() {
+		newUser.setUserPassword("test");
+		assertEquals("test", newUser.getUserPassword());
+	}
+	
+	@Test
+	public void ativityList() {
+		List<Activity> newList = new ArrayList<Activity>();
+		newList.add(newHike);
+		newUser.setActivityList(newList);
+		assertEquals(newList, newUser.getActivityList());
+	}
+	
+	@Test
+	public void stringuser() {
+		assertEquals("User [userEmail=L.Cravensworth@gmail.com, userName=Laszlo Cravensworth, userPassword=password, activityList=[Hiking [location=field, startDate=2017-01-01, endDate=2017-01-01, lengthMiles=10, officialRouteName=Hilly Hike], Hiking [location=hill, startDate=2017-01-01, endDate=2017-01-01, lengthMiles=10, officialRouteName=Hillier Hike], Kayaking [journeyStart=Potato Wharf, journeyEnd=Anchorage, dateCompleted=2017-01-01, durationMins=120]]]", newUser.toString());
+	}
+	
+	@Test
+	public void kayakKM() {
+		((Kayaking) newPaddle).setLengthKilometers(4);
+		assertEquals(4, ((Kayaking) newPaddle).getLengthKilometers());
+	}
+	
+	
 	// Create
-
 	@Test
 	public void createUser() {
 		newUser2 = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "password");
@@ -153,4 +195,8 @@ public class Version1IterationTest {
 		newUser.getActivityList().remove(newPaddle);
 		assertEquals(numberOfActivities - 1, newUser.getActivityList().size());
 	}
+	
+	
+	
+	
 }
