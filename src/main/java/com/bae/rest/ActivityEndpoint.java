@@ -41,13 +41,6 @@ public class ActivityEndpoint {
 		return service.getAllActivities(userEmail);
 	}
 
-	// @Path("/fuckThis")
-	// @GET
-	// @Produces({ "application/json" })
-	// public String getAllActivities() {
-	// return new JSONUtil().getJSONForObject(new Hiking("a", "b", "c",
-	// LocalDate.now(), LocalDate.now(), 4494, "d"));
-	// }
 
 	// Read
 	@Path("/getActivitiesByCategory/{email}/{category}")
