@@ -27,32 +27,104 @@
                             <div class="input-group mb-3" style="margin:auto;" id="loginText">
 
                                 <h2>Hi, do I know you?</h2>
-                                <p>Your face is familiar… but I can't quite place you...</p>
+                                <p id="loginResponse">Your face is familiar… but I can't quite place you...</p>
 
-                                <input type="text" class="form-control" placeholder="type your name" aria-label="username" aria-describedby="basic-addon1" id="usernameText">
+                                <input type="text" class="form-control" placeholder="type your email" aria-label="useremail" aria-describedby="basic-addon1" id="useremailText">
 
+                                <input type="text" class="form-control" placeholder="type your name" aria-label="username" aria-describedby="basic-addon1" id="usernameText" style="display:none; margin-top: 1vh;">
 
-                                <input type="password" placeholder="password" class="form-control" id="pwd">
+                                <input type="password" placeholder="type a password" class="form-control" id="pwd">
 
-
+                                <button class="btn" id="login-add" onclick="addUser()" style="margin-left:1vw;">Add</button>
                                 <button class="btn" id="login-btn" onclick="logIn()">Log in</button>
+                                <button class="btn" id="login-Reg" onclick="RegisterUser()" style="display:none;">Register</button>
+
                             </div>
                             <div class="input-group mb-3" style="margin:auto;" id="welcomeText">
 
                                 <h2 id="userWelecome"></h2>
                                 <p>These are your most recently logged activiies</p>
-                                <div class="container-flex">
-                                    <button type="button" class="btn btn-warning">
+                                <div class="container-flex" style="padding-bottom: 10px;">
+                                    <button type="button" class="btn btn-warning" onclick="recentActivities()">
                                         All Activities
                                     </button>
                                     <button type="button" class="btn btn-success" onclick="recentHikingActivities()">
                                         Hiking
                                     </button>
-                                    <button type="button" class="btn btn-primary" onclick="recentKayakingActivities()">
+                                    <button type="button" class="btn btn-info" onclick="recentKayakingActivities()">
                                         Kayaking
                                     </button>
+                                    <button type="button" class="btn btn-warning" onclick="addNewActivity()" style="background-color: hsla(0, 0%, 50%, 1); color:antiquewhite">
+                                        Add Activity
+                                    </button>
                                 </div>
-                                <table id="recentActivityTable"></table>
+                                <div class="container" id="AddNewContainer" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <button type="button" id="newHike" class="btn btn-success newAct" onclick="addNewHikingActivity()" style=" padding: 1vw;   ">
+                                                New Hike
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <button type="button" id="newPaddle" class="btn btn-info newAct" onclick="addNewKayakingActivity()" style=" padding: 1vw;">
+                                                New Paddle
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="HikingInput" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Route Name">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 5px;">
+                                        <div class="col-xs-6">
+                                            <label>Start</label>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label>End</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="date" class="form-control" placeholder="Start Date">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="date" class="form-control" placeholder="End Date">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-xs-6">
+                                            <input type="text" class="form-control" placeholder="Location">
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="number" class="form-control" placeholder="distance">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            miles
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-xs-12">
+                                            <input type="text" class="form-control" placeholder="description">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" placeholder="lifelog file directory">
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <button type="button" id="newHikeAdd" class="btn btn-success" onclick="addHike()" style=" padding: 1vw;">
+                                                submit
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="container" id="contents">
                                     <div id="recentactivityList"></div>
                                 </div>

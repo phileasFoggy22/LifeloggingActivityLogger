@@ -7,34 +7,102 @@ function setUpPage() {
     var dir = '../images/';
     var randomCount = Math.round(Math.random() * (images.length - 1));
     document.getElementById("imageBanner").style.backgroundImage = "url(" + dir + images[randomCount] + ")";
-    //    document.getElementById("imageBanner").innerHTML = "url(" + dir + images[randomCount] + ")";
+
+    if (localStorage.hasOwnProperty("userEmail") && localStorage.hasOwnProperty("userPassword")) {
+        document.getElementById("loginText").style.display = "none";
+        showUser(localStorage.getItem("userEmail"), localStorage.getItem("userPassword"));
+    }
 
 }
 
 function logIn() {
     document.getElementById("loginText").style.display = "none";
+    let userEmail = document.getElementById("useremailText").value;
+    let userPassword = document.getElementById("pwd").value;
+    if (userEmail != "" && userPassword != "") {
+        showUser(userEmail, userPassword);
+    } else {
+        document.getElementById("loginText").style.display = "block";
+        document.getElementById("loginResponse").innerHTML = "I don't think I know you";
+    }
+}
+
+function addUser() {
+    document.getElementById("usernameText").style.display = "block";
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("login-Reg").style.display = "block";
+    document.getElementById("login-add").style.display = "none";
+}
+
+function RegisterUser() {
+    let userEmail = document.getElementById("useremailText").value;
     let userName = document.getElementById("usernameText").value;
     let userPassword = document.getElementById("pwd").value;
-    showUser(userName, userPassword);
+    var newUserJSON = {
+        userName: userName,
+        userEmail: userEmail,
+        userPassword: userPassword
+    };
+    var newUserJSONString = JSON.stringify(newUserJSON);
+    console.log(newUserJSONString);
+    makeRequest("GET", URLstring + "users/fetchUser/" + userEmail, "").then((resolve) => {
+        var newobj2 = JSON.parse(resolve);
+        console.log(newobj2);
+        if (newobj2 != null) {
+            document.getElementById("loginResponse").innerHTML = "Email already in use";
+        } else {
+            makeRequest("POST", URLstring + "users/createUser", newUserJSONString).then((resolve) => {
+                document.getElementById("loginText").style.display = "none";
+                showUser(userEmail, userPassword);
+            })
+        }
+
+    }).catch((reject) => {
+        makeRequest("POST", URLstring + "users/createUser", newUserJSONString).then((resolve) => {
+            showUser(userEmail, userPassword);
+        })
+    })
 
 }
 
-function showUser(userName, userPassword) {
-    makeRequest("GET", URLstring + "users/fetchUser/" + userName, "").then((resolve) => {
-            document.getElementById('welcomeText').style.display = 'block';
+
+function showUser(userEmail, userPassword) {
+    makeRequest("GET", URLstring + "users/fetchUser/" + userEmail, "").then((resolve) => {
+
             var newobj1 = JSON.parse(resolve);
             console.log(newobj1);
-            document.getElementById("userWelecome").innerHTML = "Hi " + newobj1["userName"];
-            localStorage.setItem("userEmail", newobj1["userEmail"]);
-            recentActivities(newobj1["userEmail"]);
+            if ((newobj1 != null) && (newobj1["userPassword"] == userPassword && newobj1["userEmail"] == userEmail)) {
+                document.getElementById('welcomeText').style.display = 'block';
+                document.getElementById("userWelecome").innerHTML = "Hi " + newobj1["userName"];
+                localStorage.setItem("userEmail", newobj1["userEmail"]);
+                localStorage.setItem("userPassword", newobj1["userPassword"]);
+                recentActivities(newobj1["userEmail"]);
 
+            } else {
+                document.getElementById("loginText").style.display = "block";
+                document.getElementById("loginResponse").innerHTML = "Who are you!?!";
+            }
         }
 
     )
 }
 
+function recentActivities() {
+    document.getElementById("loginText").style.display = "none";
+    showUser(localStorage.getItem("userEmail"), localStorage.getItem("userPassword"));
+}
 
+function addNewActivity() {
+    document.getElementById("AddNewContainer").style.display = "block";
+}
 
+function addNewHikingActivity() {
+    document.getElementById("HikingInput").style.display = "block";
+}
+
+function addHike() {
+
+}
 
 
 

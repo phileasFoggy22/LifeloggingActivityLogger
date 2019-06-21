@@ -46,6 +46,21 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#login-add {
+    background-color: antiquewhite;
+    color: hsla(0, 0%, 50%, 1);
+    font-weight: bold;
+    margin-top: 1vh;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 100%;
+    float: right;
+}
+
+#login-add:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 #login-btn {
     background-color: antiquewhite;
     color: hsla(0, 0%, 50%, 1);
@@ -61,14 +76,75 @@
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+#login-Reg {
+    background-color: antiquewhite;
+    color: hsla(0, 0%, 50%, 1);
+    font-weight: bold;
+    margin-top: 1vh;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 100%;
+    float: right;
+}
+
+#login-Reg:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 #pwd {
     width: 65%;
     margin-top: 1vh;
-
 }
+
+#AddNewContainer {
+    margin-bottom: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 
 #welcomeText {
     display: none;
+}
+
+.newAct {
+    margin-top: 1vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    width: 150px;
+
+}
+
+#newHike {
+    background-color: hsla(0, 0%, 50%, 1);
+    color: antiquewhite;
+}
+
+#newHike:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #5cb85c;
+}
+
+#newHikeAdd {
+    background-color: hsla(0, 0%, 50%, 1);
+    color: antiquewhite;
+}
+
+#newHikeAdd:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #5cb85c;
+}
+
+
+#newPaddle {
+    background-color: hsla(0, 0%, 50%, 1);
+    color: antiquewhite;
+}
+
+#newPaddle:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #5bc0de;
 }
 
 #recentActivityList {}
