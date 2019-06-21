@@ -3,7 +3,6 @@ package com.bae.rest;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -19,7 +18,7 @@ public class ActivityEndpoint {
 
 	// Create
 	@Path("/createActivity/{email}")
-	@POST
+	@PUT
 	@Produces({ "application/json" })
 	public String createActivity(@PathParam("email") String userEmail, String activityLog) {
 		return service.createActivity(userEmail, activityLog);
@@ -40,7 +39,6 @@ public class ActivityEndpoint {
 	public String getAllActivities(@PathParam("email") String userEmail) {
 		return service.getAllActivities(userEmail);
 	}
-
 
 	// Read
 	@Path("/getActivitiesByCategory/{email}/{category}")

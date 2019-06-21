@@ -1,6 +1,5 @@
 const URLstring = "http://localhost:8080/LifeloggingActivityLogV3/api/";
 
-
 function setUpPage() {
 
     var images = ['T0010081.jpg', 'T0010086.JPG', 'T0020021.JPG', 'T0020046.jpg', 'T0020101.jpg', 'T0020114.jpg', 'T0040145.jpg', 'T0040160.jpg', 'T0040166.jpg', 'T0040174.jpg', 'T0040189.jpg', 'T0040215.jpg', 'T0040226.jpg', 'T0070114.jpg', 'T0070127.jpg', 'T0070132.jpg', 'T0070153.jpg', 'T0070171.jpg', 'T0070201.jpg', 'T0070234.jpg', 'T0070339.jpg'];
@@ -12,79 +11,6 @@ function setUpPage() {
         document.getElementById("loginText").style.display = "none";
         showUser(localStorage.getItem("userEmail"), localStorage.getItem("userPassword"));
     }
-
-}
-
-function logIn() {
-    document.getElementById("loginText").style.display = "none";
-    let userEmail = document.getElementById("useremailText").value;
-    let userPassword = document.getElementById("pwd").value;
-    if (userEmail != "" && userPassword != "") {
-        showUser(userEmail, userPassword);
-    } else {
-        document.getElementById("loginText").style.display = "block";
-        document.getElementById("loginResponse").innerHTML = "I don't think I know you";
-    }
-}
-
-function addUser() {
-    document.getElementById("usernameText").style.display = "block";
-    document.getElementById("login-btn").style.display = "none";
-    document.getElementById("login-Reg").style.display = "block";
-    document.getElementById("login-add").style.display = "none";
-}
-
-function RegisterUser() {
-    let userEmail = document.getElementById("useremailText").value;
-    let userName = document.getElementById("usernameText").value;
-    let userPassword = document.getElementById("pwd").value;
-    var newUserJSON = {
-        userName: userName,
-        userEmail: userEmail,
-        userPassword: userPassword
-    };
-    var newUserJSONString = JSON.stringify(newUserJSON);
-    console.log(newUserJSONString);
-    makeRequest("GET", URLstring + "users/fetchUser/" + userEmail, "").then((resolve) => {
-        var newobj2 = JSON.parse(resolve);
-        console.log(newobj2);
-        if (newobj2 != null) {
-            document.getElementById("loginResponse").innerHTML = "Email already in use";
-        } else {
-            makeRequest("POST", URLstring + "users/createUser", newUserJSONString).then((resolve) => {
-                document.getElementById("loginText").style.display = "none";
-                showUser(userEmail, userPassword);
-            })
-        }
-
-    }).catch((reject) => {
-        makeRequest("POST", URLstring + "users/createUser", newUserJSONString).then((resolve) => {
-            showUser(userEmail, userPassword);
-        })
-    })
-
-}
-
-
-function showUser(userEmail, userPassword) {
-    makeRequest("GET", URLstring + "users/fetchUser/" + userEmail, "").then((resolve) => {
-
-            var newobj1 = JSON.parse(resolve);
-            console.log(newobj1);
-            if ((newobj1 != null) && (newobj1["userPassword"] == userPassword && newobj1["userEmail"] == userEmail)) {
-                document.getElementById('welcomeText').style.display = 'block';
-                document.getElementById("userWelecome").innerHTML = "Hi " + newobj1["userName"];
-                localStorage.setItem("userEmail", newobj1["userEmail"]);
-                localStorage.setItem("userPassword", newobj1["userPassword"]);
-                recentActivities(newobj1["userEmail"]);
-
-            } else {
-                document.getElementById("loginText").style.display = "block";
-                document.getElementById("loginResponse").innerHTML = "Who are you!?!";
-            }
-        }
-
-    )
 }
 
 function recentActivities() {
@@ -96,60 +22,15 @@ function addNewActivity() {
     document.getElementById("AddNewContainer").style.display = "block";
 }
 
-function addNewHikingActivity() {
-    document.getElementById("HikingInput").style.display = "block";
-}
-
-function addHike() {
-
-    let AHtitleh2Input = document.getElementById("AddHikeRouteName").value;
-    let AHh6locInput = document.getElementById("AddHikeLocation").value;
-    let AHh6milesInput = document.getElementById("AddHikeDistance").value;
-    let AHpdescInput = document.getElementById("AddHikeDescription").value;
-    let AHfdirInput = document.getElementById("AddHikeLifelog").value;
-    let AHdateStart = document.getElementById("AddHikeStartDate").value;
-    let AHdateEnd = document.getElementById("AddHikeEndDate").value;
-
-    console.log(formatDate(AHdateStart));
-
-    let AHbodyJSON = {};
-    if (AHtitleh2Input.value != "") {
-        AHbodyJSON["officialRouteName"] = AHtitleh2Input.value;
-    }
-    if (AHh6locInput.value != "") {
-        AHbodyJSON["location"] = AHh6locInput.value;
-    }
-    if (AHh6milesInput.value != "") {
-        AHbodyJSON["lengthMiles"] = AHh6milesInput.value;
-    }
-    if (AHpdescInput.value != "") {
-        AHbodyJSON["description"] = AHpdescInput.value;
-    }
-    if (AHfdirInput.value != "") {
-        AHbodyJSON["lifelogDirectory"] = AHfdirInput.value;
-    }
-    if (AHdateStart.value != null) {
-        //        let dateStart2 = new Date(dateStart.value.toString());
-        AHbodyJSON["startDate"] = formatDate(AHdateStart);
-    }
-    if (AHdateEnd.value != null) {
-        //        let dateEnd2 = new Date(dateEnd.value.toString());
-        AHbodyJSON["endDate"] = formatDate(AHdateEnd);
-    }
-    console.log("here");
-    console.log(AHbodyJSON);
-    makeRequest("POST", URLstring + "activities/createActivity/" + userEmail, AHbodyJSON).then((resolve) => {
-        console.log("It worked");
-    })
-
-
-}
 
 function formatDate(date) {
-    return "{\"year\": " + date.substring(0, 4) + ",\"month\": " + date.substring(5, 7) + ",\"day\": " + date.substring(9, 10) + "}";
+    return {
+        "year": date.substring(0, 4),
+        "month": date.substring(5, 7),
+        "day": date.substring(9, 10)
+    };
+
 }
-
-
 
 function makeRequest(method, url, body) {
     return new Promise(

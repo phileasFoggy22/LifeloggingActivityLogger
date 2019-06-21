@@ -3,6 +3,7 @@ package com.bae.persistence.repository;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,9 +37,20 @@ public class ActivityDBRepository implements ActivityRepository {
 	@Transactional(REQUIRED)
 	public String createActivity(String userEmail, String activityLog) {
 		userDetails = manager.find(User.class, userEmail);
-		Activity anActivity = util.getObjectForJSON(activityLog, Activity.class);
-		userDetails.getActivityList().add(anActivity);
-		return "{\"message\": \"activity successfully added\"}";
+
+		String[] hikingString = { "location\":", "startDate\":", "endDate\":", "lengthMiles\":",
+				"officialRouteName\":" };
+
+		if (Arrays.stream(hikingString).parallel().anyMatch(activityLog::contains)) {
+			Hiking anActivity = util.getObjectForJSON(activityLog, Hiking.class);
+			userDetails.getActivityList().add(anActivity);
+			return "{\"message\": \"activity successfully added\"}";
+		} else {
+			Kayaking anActivity = util.getObjectForJSON(activityLog, Kayaking.class);
+			userDetails.getActivityList().add(anActivity);
+			return "{\"message\": \"activity successfully added\"}";
+		}
+
 	}
 
 	// read

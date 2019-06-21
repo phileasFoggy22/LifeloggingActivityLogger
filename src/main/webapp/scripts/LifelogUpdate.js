@@ -6,12 +6,7 @@ function updateActivity(id, bodyJSON) {
     makeRequest("PUT", URLstring + "activities/updateActivity/" + userEmail + "/" + id, realJSON).then((resolve) => {
         var newobj1 = JSON.parse(resolve);
         console.log(newobj1);
-        if (newobj1["ActivityUpdated"] === "Hiking") {
-            recentHikingActivities();
-        }
-        if (newobj1["ActivityUpdated"] === "Kayaking") {
-            recentKayakingActivities();
-        }
+
     })
 }
 

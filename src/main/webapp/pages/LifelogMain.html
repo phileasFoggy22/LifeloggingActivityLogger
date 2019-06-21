@@ -11,6 +11,10 @@
     <script type="text/javascript" src="../scripts/LifelogRecentActivities.js"></script>
     <script type="text/javascript" src="../scripts/LifelogRecentHiking.js"></script>
     <script type="text/javascript" src="../scripts/LifelogRecentKayaking.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogAddHiking.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogAddKayaking.js"></script>
+    <script type="text/javascript" src="../scripts/LifelogLogon.js"></script>
+    <script type="text/javascript" src="../scripts/LifeLogNewUser.js"></script>
     <script type="text/javascript" src="../scripts/LifelogUpdate.js"></script>
 </head>
 
@@ -59,18 +63,16 @@
                                     </button>
                                 </div>
                                 <div class="container" id="AddNewContainer" style="display:none;">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <button type="button" id="newHike" class="btn btn-success newAct" onclick="addNewHikingActivity()" style=" padding: 1vw;   ">
-                                                New Hike
-                                            </button>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <button type="button" id="newPaddle" class="btn btn-info newAct" onclick="addNewKayakingActivity()" style=" padding: 1vw;">
-                                                New Paddle
-                                            </button>
-                                        </div>
+                                    <div style="    display: flex;    justify-content: center;">
+                                        <button type="button" id="newHike" class="btn btn-success newAct" onclick="addNewHikingActivity()" style=" padding: 1vw;   ">
+                                            New Hike
+                                        </button>
+
+                                        <button type="button" id="newPaddle" class="btn btn-info newAct" onclick="addNewKayakingActivity()" style=" padding: 1vw;">
+                                            New Paddle
+                                        </button>
                                     </div>
+
                                 </div>
 
 
@@ -125,6 +127,61 @@
                                     </div>
 
                                 </div>
+                                <div id="KayakingInput" style="display:none;">
+                                    <div class="row" style="padding-top: 5px;">
+                                        <div class="col-xs-6">
+                                            <label>Start</label>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label>End</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <input id="AddKayakJourneyStart" type="text" class="form-control" placeholder="Route Name">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label> to </label>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <input id="AddKayakJourneyEnd" type="date" class="form-control" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-xs-4">
+                                            <input id="AddKayakDate" type="date" class="form-control" placeholder="End Date">
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <input id="AddKayakDuration" type="number" class="form-control" placeholder="Location">
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input id="AddKayakLength" type="number" class="form-control" placeholder="distance">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            kilometers
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-xs-12">
+                                            <input type="text" id="AddKayakDescription" class="form-control" placeholder="description">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                                        <div class="col-xs-9">
+                                            <input type="text" id="AddKayakLifelog" class="form-control" placeholder="lifelog file directory">
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <button type="button" id="newKayakAdd" class="btn btn-success" onclick="addPaddle()" style=" padding: 1vw;">
+                                                submit
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
                                 <div class="container" id="contents">
                                     <div id="recentactivityList"></div>
                                 </div>

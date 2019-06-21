@@ -1,4 +1,9 @@
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
 function recentHikingActivities() {
+
+
     var userEmail = localStorage.getItem("userEmail");
     makeRequest("GET", URLstring + "activities/getActivitiesByCategory/" + userEmail + "/Hiking", "").then((resolve) => {
         var newobj1 = JSON.parse(resolve);
@@ -26,10 +31,13 @@ function recentHikingActivities() {
 
             let col2a = document.createElement("DIV");
             col2a.className = "col-xs-4";
-            col2a.style.paddingTop = '20px';
+            col2a.style.paddingTop = '10px';
 
             //Dates
-            let dateh4 = document.createElement("h4");
+            let dateh4 = document.createElement("h6");
+            dateh4.style.textAlign = "center";
+            dateh4.style.fontWeight = "bold";
+
             let dateh4Input = document.createElement("input");
             dateh4Input.style.display = "none";
             dateh4Input.type = "date";
@@ -44,15 +52,14 @@ function recentHikingActivities() {
 
             dateh4.innerHTML = "";
             if (newobj1[i]["startDate"] != null) {
-                var month = parseInt(newobj1[i]["startDate"]["month"]);
-                dateh4.innerHTML += newobj1[i]["startDate"]["day"] + ' ' + month.getMonth() + ' ' + newobj1[i]["startDate"]["year"];
+                dateh4.innerHTML += newobj1[i]["startDate"]["day"] + ' ' + monthNames[newobj1[i]["startDate"]["month"]] + ' ' + newobj1[i]["startDate"]["year"];
                 dateh4Input.value = newobj1[i]["startDate"];
                 if (newobj1[i]["endDate"] != null) {
-                    dateh4.innerHTML += 'to ' + newobj1[i]["endDate"]["day"] + ' ' + newobj1[i]["endDate"]["month"] + ' ' + newobj1[i]["endDate"]["year"];
+                    dateh4.innerHTML += ' to ' + newobj1[i]["endDate"]["day"] + ' ' + monthNames[newobj1[i]["endDate"]["month"]] + ' ' + newobj1[i]["endDate"]["year"];
                     dateh4Input2.value = newobj1[i]["endDate"];
                 }
             } else if (newobj1[i]["endDate"] != null) {
-                dateh4.innerHTML += newobj1[i]["endDate"]["day"] + ' ' + newobj1[i]["endDate"]["month"] + ' ' + newobj1[i]["endDate"]["year"];
+                dateh4.innerHTML += newobj1[i]["endDate"]["day"] + ' ' + monthNames[newobj1[i]["endDate"]["month"]] + ' ' + newobj1[i]["endDate"]["year"];
                 dateh4Input2.value = newobj1[i]["endDate"];
             }
             if ((newobj1[i]["endDate"] == null) && (newobj1[i]["startDate"] == null)) {
@@ -258,15 +265,11 @@ function recentHikingActivities() {
                     if (fdirInput.value != "") {
                         bodyJSON["lifelogDirectory"] = fdirInput.value;
                     }
-                    if (dateh4Input.value.toString() != "") {
-
-                        let dateStart = new Date(dateh4Input.value.toString());
-                        console.log(dateStart);
-                        bodyJSON["startDate"] = dateStart.toJSON();
+                    if (dateh4Input.value.length > 6) {
+                        bodyJSON["startDate"] = formatDate(dateh4Input.value.toString());
                     }
-                    if (dateh4Input2.value.toString() != "") {
-                        let dateEnd = new Date(dateh4Input2.value.toString());
-                        bodyJSON["endDate"] = dateEnd.toJSON();
+                    if (dateh4Input2.value.length > 6) {
+                        bodyJSON["endDate"] = formatDate(dateh4Input2.value.toString());
                     }
 
                     console.log("here now: " + bodyJSON);
@@ -285,5 +288,7 @@ function recentHikingActivities() {
 
             document.getElementById("recentactivityList").appendChild(nodeDiv);
         }
+    }).then((resolve) => {
+        recentHikingActivities();
     })
 }
