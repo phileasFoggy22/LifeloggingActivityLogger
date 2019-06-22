@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.bae.persistence.domain.test" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/persistence/domain/test" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="480" x="2395" y="26"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="com.bae.persistence.domain.test.Version1IterationJUnitTest" 
+    project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/persistence/domain/test/Version1IterationJUnitTest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2516" y="284"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.bae.persistence.domain.test.Version1IterationTest" 
+    project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/persistence/domain/test/Version1IterationTest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2765" y="389"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.bae.repository.test.ActivityDBRepositoryTest" 
+    project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/repository/test/ActivityDBRepositoryTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2104" y="293"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.bae.repository.test.UserDBRepositoryTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/repository/test/UserDBRepositoryTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1683" y="287"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.bae.repository.test.Version2IterationTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/repository/test/Version2IterationTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1930" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="7" language="java" name="com.bae.repository.test" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/repository/test" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="837" x="1499" y="24"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="com.bae.service.test" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/service/test" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="450" x="1030" y="25"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="9" language="java" name="com.bae.service.test.ActivityServiceTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/service/test/ActivityServiceTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1371" y="267"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.bae.service.test.UserServiceTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/service/test/UserServiceTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1136" y="250"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="11" language="java" name="com.bae.rest.test" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/rest/test" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="320" x="686" y="26"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="12" language="java" name="com.bae.rest.test.ActivityEndPointTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/rest/test/ActivityEndPointTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="897" y="266"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.bae.rest.test.UserEndPointTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/rest/test/UserEndPointTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="665" y="251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.bae.selenium.SeleniumTest" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/selenium/SeleniumTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="151" width="290" x="231" y="104"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="15" language="java" name="com.bae.selenium" project="LifeloggingActivityLogger" 
+    file="/LifeloggingActivityLogger/src/test/java/com/bae/selenium" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="285" x="235" y="33"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
