@@ -21,7 +21,7 @@ public class Kayaking extends Activity {
 
 	public Kayaking(String lifelogDirectory, String description, String journeyStart, String journeyEnd,
 			LocalDate dateCompleted, int durationMins, int lengthKilometers) {
-		super(lifelogDirectory, description);
+		super(lifelogDirectory, description, Kayaking.class.toString());
 		this.journeyStart = journeyStart;
 		this.journeyEnd = journeyEnd;
 

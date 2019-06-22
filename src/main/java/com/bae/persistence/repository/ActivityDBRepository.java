@@ -38,19 +38,20 @@ public class ActivityDBRepository implements ActivityRepository {
 	public String createActivity(String userEmail, String activityLog) {
 		userDetails = manager.find(User.class, userEmail);
 
-		String[] hikingString = { "location\":", "startDate\":", "endDate\":", "lengthMiles\":",
-				"officialRouteName\":" };
+		String[] hikingString = { "activityType\":\"Hiking\"" };
+		String[] kayakingString = { "activityType\":\"Kayaking\"" };
 
 		if (Arrays.stream(hikingString).parallel().anyMatch(activityLog::contains)) {
 			Hiking anActivity = util.getObjectForJSON(activityLog, Hiking.class);
 			userDetails.getActivityList().add(anActivity);
-			return "{\"message\": \"activity successfully added\"}";
-		} else {
+			return "{\"message\": \"Hiking activity successfully added\"}";
+		} else if (Arrays.stream(kayakingString).parallel().anyMatch(activityLog::contains)) {
 			Kayaking anActivity = util.getObjectForJSON(activityLog, Kayaking.class);
 			userDetails.getActivityList().add(anActivity);
-			return "{\"message\": \"activity successfully added\"}";
+			return "{\"message\": \"Kayaking activity successfully added\"}";
+		} else {
+			return "{\"message\": \"Activity type not found\"}";
 		}
-
 	}
 
 	// read
@@ -125,7 +126,7 @@ public class ActivityDBRepository implements ActivityRepository {
 					if (updatedActivity.getStartDate() != null) {
 						((Hiking) userDetails.getActivityList().get(i)).setStartDate(updatedActivity.getStartDate());
 					}
-					return "{\"message\": \"Activity successfully updated\"}";
+					return "{\"ActivityUpdated\": \"Hiking\"}";
 
 				} else if (userDetails.getActivityList().get(i) instanceof Kayaking) {
 					Kayaking updatedActivity = util.getObjectForJSON(activityLog, Kayaking.class);

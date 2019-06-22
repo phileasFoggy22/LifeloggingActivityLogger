@@ -32,6 +32,14 @@ public class User {
 		this.activityList = new ArrayList<>();
 	}
 
+	public User(String userEmail, String userName, String userPassword, List<Activity> activities) {
+		super();
+		this.userEmail = userEmail;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.activityList = activities;
+	}
+
 	public User() {
 
 	}

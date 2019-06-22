@@ -21,10 +21,13 @@ public abstract class Activity {
 	@Column(length = 255)
 	private String description;
 
-	public Activity(String lifelogDirectory, String description) {
+	@Column(length = 50)
+	private String activityType;
+
+	public Activity(String lifelogDirectory, String description, String activityType) {
 		super();
 		this.lifelogDirectory = lifelogDirectory;
-
+		this.activityType = activityType;
 		this.description = description;
 	}
 

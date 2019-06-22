@@ -13,7 +13,6 @@ import javax.transaction.Transactional.TxType;
 import com.bae.persistence.domain.User;
 import com.bae.util.JSONUtil;
 
-
 @Transactional(SUPPORTS)
 @Default
 public class UserDBRepository implements UserRepository {
@@ -42,17 +41,23 @@ public class UserDBRepository implements UserRepository {
 		TypedQuery<User> query = manager.createQuery("SELECT a FROM User a", User.class);
 		return util.getJSONForObject(query.getResultList());
 	}
-	
-	
+
 	@Override
 	@Transactional(TxType.REQUIRED)
-	public String updateUser(String userJSON, String userEmail) {
+	public String updateUser(String userJSON, String userEmail2) {
 		User theUser = util.getObjectForJSON(userJSON, User.class);
-		User updateThisUser = manager.find(User.class, userEmail);
-		updateThisUser.setUserEmail(theUser.getUserEmail());
-		updateThisUser.setUserName(theUser.getUserName());
-		updateThisUser.setUserPassword(theUser.getUserPassword());
-		manager.persist(updateThisUser);
+		User updateThisUser = manager.find(User.class, userEmail2);
+		if (theUser.getUserEmail().equalsIgnoreCase(updateThisUser.getUserEmail())) {
+			updateThisUser.setUserName(theUser.getUserName());
+			updateThisUser.setUserPassword(theUser.getUserPassword());
+			manager.persist(updateThisUser);
+		} else {
+			// the following causes an error
+			// theUser.setActivityList(updateThisUser.getActivityList());
+			manager.persist(theUser);
+			manager.remove(updateThisUser);
+
+		}
 		return "{\"message\": \"user successfully updated\"}";
 
 	}
@@ -64,7 +69,7 @@ public class UserDBRepository implements UserRepository {
 		manager.remove(aUser);
 		return "{\"message\": \"User sucessfully removed\"}";
 	}
-	
+
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
 	}

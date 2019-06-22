@@ -26,6 +26,7 @@
                 <div class="row">
 
 
+
                     <span id='Hi'>
                         <div id='HiBox' style=' bottom:10vh;'>
                             <div class="input-group mb-3" style="margin:auto;" id="loginText">
@@ -42,14 +43,17 @@
                                 <button class="btn" id="login-add" onclick="addUser()" style="margin-left:1vw;">Add</button>
                                 <button class="btn" id="login-btn" onclick="logIn()">Log in</button>
                                 <button class="btn" id="login-Reg" onclick="RegisterUser()" style="display:none;">Register</button>
+                                <button class="btn" id="login-Upd" onclick="updateUserRegistrationInformation()" style="display:none;">Update</button>
 
                             </div>
                             <div class="input-group mb-3" style="margin:auto;" id="welcomeText">
 
-                                <h2 id="userWelecome"></h2>
+                                <div id="userWelcomeDetails">
+                                    <h2 id="userWelcome"></h2>
+                                </div>
                                 <p>These are your most recently logged activiies</p>
                                 <div class="container-flex" style="padding-bottom: 10px;">
-                                    <button type="button" class="btn btn-warning" onclick="recentActivities()">
+                                    <button type="button" class="btn btn-warning" onclick="showRecentActivities()">
                                         All Activities
                                     </button>
                                     <button type="button" class="btn btn-success" onclick="recentHikingActivities()">
@@ -61,6 +65,7 @@
                                     <button type="button" class="btn btn-warning" onclick="addNewActivity()" style="background-color: hsla(0, 0%, 50%, 1); color:antiquewhite">
                                         Add Activity
                                     </button>
+                                    <button id="logOff" onclick="logOffUser()" class="btn btn-primary">log off</button>
                                 </div>
                                 <div class="container" id="AddNewContainer" style="display:none;">
                                     <div style="    display: flex;    justify-content: center;">
@@ -137,29 +142,34 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-5">
-                                            <input id="AddKayakJourneyStart" type="text" class="form-control" placeholder="Route Name">
+                                        <div class="col-xs-6">
+                                            <input id="AddKayakJourneyStart" type="text" class="form-control" placeholder="From here">
                                         </div>
-                                        <div class="col-xs-2">
-                                            <label> to </label>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <input id="AddKayakJourneyEnd" type="date" class="form-control" placeholder="Start Date">
+
+                                        <div class="col-xs-6">
+                                            <input id="AddKayakJourneyEnd" type="text" class="form-control" placeholder="to here">
                                         </div>
                                     </div>
                                     <div class="row" style="padding-top: 10px;">
                                         <div class="col-xs-4">
-                                            <input id="AddKayakDate" type="date" class="form-control" placeholder="End Date">
+                                            <input id="AddKayakDuration" type="number" class="form-control" placeholder="Time">
                                         </div>
-
-                                        <div class="col-xs-6">
-                                            <input id="AddKayakDuration" type="number" class="form-control" placeholder="Location">
+                                        <div class="col-xs-2">
+                                            mins
                                         </div>
                                         <div class="col-xs-4">
                                             <input id="AddKayakLength" type="number" class="form-control" placeholder="distance">
                                         </div>
-                                        <div class="col-xs-1">
-                                            kilometers
+                                        <div class="col-xs-2">
+                                            km
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-xs-6">
+                                            Date Completed:
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input id="AddKayakDate" type="date" class="form-control" placeholder="Date">
                                         </div>
                                     </div>
                                     <div class="row" style="padding-top: 10px;">
@@ -173,7 +183,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <button type="button" id="newKayakAdd" class="btn btn-success" onclick="addPaddle()" style=" padding: 1vw;">
+                                            <button type="button" id="newKayakAdd" class="btn btn-info" onclick="addPaddle()" style=" padding: 1vw;">
                                                 submit
                                             </button>
                                         </div>

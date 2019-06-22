@@ -91,6 +91,21 @@
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+#login-Upd {
+    background-color: antiquewhite;
+    color: hsla(0, 0%, 50%, 1);
+    font-weight: bold;
+    margin-top: 1vh;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 100%;
+    float: right;
+}
+
+#login-Upd:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 #pwd {
     width: 65%;
     margin-top: 1vh;
@@ -147,22 +162,18 @@
     background-color: #5bc0de;
 }
 
+#newKayakAdd {
+    background-color: hsla(0, 0%, 50%, 1);
+    color: antiquewhite;
+}
+
+#newKayakAdd:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #5bc0de;
+}
+
 #recentActivityList {}
 
-.TableHeader {
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: darkgoldenrod;
-
-}
-
-.TableRow {
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: darkkhaki;
-    color: black;
-
-}
 
 
 .activitylisting {
@@ -177,6 +188,10 @@
     max-height: 60vh;
     overflow-y: scroll;
     margin-left: -15px;
+}
+
+#logOff {
+    float: right;
 }
 
 
