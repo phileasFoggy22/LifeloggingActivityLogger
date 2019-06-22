@@ -17,7 +17,6 @@ function showUser(userEmail, userPassword) {
             var newobj1 = JSON.parse(resolve);
             if ((newobj1 != null) && (newobj1["userPassword"] == userPassword && newobj1["userEmail"] == userEmail)) {
                 document.getElementById('welcomeText').style.display = 'block';
-                var UserDetails = document.getElementById("userWelcomeDetails");
                 document.getElementById("userWelcome").innerHTML = "Hi " + newobj1["userName"];
                 localStorage.setItem("userName", newobj1["userName"]);
                 localStorage.setItem("userEmail", newobj1["userEmail"]);

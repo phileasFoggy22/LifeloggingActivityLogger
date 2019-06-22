@@ -76,7 +76,7 @@ public class UserDBRepositoryTest {
 	@Test
 	public void testRemoveUser() {
 		String reply = userRepo.deleteUser(MOCK_VALUE2);
-		Assert.assertEquals(reply, "{\"message\": \"User sucessfully removed\"}");
+		Assert.assertEquals("{\"message\": \"User sucessfully removed\"}", reply);
 	}
 
 	@Test

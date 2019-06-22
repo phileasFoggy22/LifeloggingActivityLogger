@@ -2,9 +2,6 @@ package com.bae.repository.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -26,7 +23,7 @@ public class Version2IterationTest {
 
 	@InjectMocks
 	private UserDBRepository repo;
-	
+
 	@Mock
 	private EntityManager manager;
 
@@ -42,7 +39,7 @@ public class Version2IterationTest {
 		repo.setManager(manager);
 		util = new JSONUtil();
 		repo.setUtil(util);
-	} 
+	}
 
 	@Test
 	public void addUser() {
@@ -53,24 +50,28 @@ public class Version2IterationTest {
 
 	@Test
 	public void getUser() {
-			
-		User user = new User("N.Cravensworth@gmail.com","Nadja Cravensworth", "Password");
+
+		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
-		assertEquals("{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"userPassword\":\"Password\",\"activityList\":[]}", repo.getUser("N.Cravensworth@gmail.com"));
+		assertEquals(
+				"{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"userPassword\":\"Password\",\"activityList\":[]}",
+				repo.getUser("N.Cravensworth@gmail.com"));
 
 	}
 
 	@Test
 	public void updateUser() {
-		User user = new User("N.Cravensworth@gmail.com","Nadja Cravensworth", "Password");
+		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
-		assertEquals("{\"message\": \"user successfully updated\"}", repo.updateUser("{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"userPassword\":\"Password\",\"activityList\":[]}", "N.Cravensworth@gmail.com"));
+		assertEquals("{\"message\": \"user successfully updated\"}", repo.updateUser(
+				"{\"userEmail\":\"N.Cravensworth@gmail.com\",\"userName\":\"Nadja Cravensworth\",\"userPassword\":\"Password\",\"activityList\":[]}",
+				"N.Cravensworth@gmail.com"));
 	}
 
 	@Test
 	public void deleteUser() {
 		String reply = repo.deleteUser("N.Cravensworth@gmail.com");
-		Assert.assertEquals(reply, "{\"message\": \"User sucessfully removed\"}");
+		Assert.assertEquals("{\"message\": \"User sucessfully removed\"}", reply);
 	}
 
 }

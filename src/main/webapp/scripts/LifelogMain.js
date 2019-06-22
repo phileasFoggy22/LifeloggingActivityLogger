@@ -44,7 +44,7 @@ function logOffUser() {
 function makeRequest(method, url, body) {
     return new Promise(
         (resolve, reject) => {
-            const req = new XMLHttpRequest();
+            let req = new XMLHttpRequest();
             if ("withCredentials" in req) {
                 // Check if the XMLHttpRequest object has a "withCredentials" property.
                 // "withCredentials" only exists on XMLHTTPRequest2 objects.
@@ -61,7 +61,6 @@ function makeRequest(method, url, body) {
             } else {
                 // Otherwise, CORS is not supported by the browser.
                 throw new Error('CORS not supported');
-                req = null;
             }
 
             req.onload = () => {

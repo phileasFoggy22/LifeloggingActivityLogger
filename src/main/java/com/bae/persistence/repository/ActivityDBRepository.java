@@ -82,8 +82,7 @@ public class ActivityDBRepository implements ActivityRepository {
 			// Was by start date before null values caused errors
 			List<Hiking> hikingList = userDetails.getActivityList().stream().filter(hike -> hike instanceof Hiking)
 					.map(a -> (Hiking) a).collect(Collectors.toList());
-			Comparator<Hiking> compareByRecentID = (Hiking o1, Hiking o2) -> ((Hiking) o1).getId()
-					.compareTo(((Hiking) o2).getId());
+			Comparator<Hiking> compareByRecentID = (Hiking o1, Hiking o2) -> o1.getId().compareTo(o2.getId());
 			Collections.sort(hikingList, compareByRecentID.reversed());
 			return util.getJSONForObject(hikingList);
 

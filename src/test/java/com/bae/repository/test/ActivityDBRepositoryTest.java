@@ -53,8 +53,9 @@ public class ActivityDBRepositoryTest {
 		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		user.getActivityList().add(newHike);
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
-		Assert.assertEquals(actRepo.getAllActivities(MOCK_VALUE),
-				"[{\"location\":\"field\",\"startDate\":\"Jun 4, 2019 12:00:00 AM\",\"endDate\":\"Jun 4, 2019 12:00:00 AM\",\"lengthMiles\":10,\"officialRouteName\":\"Hilly Hike\",\"lifelogDirectory\":\"File/Area\",\"description\":\"long hike, feet hurt\"}]");
+		Assert.assertEquals(
+				"[{\"location\":\"field\",\"startDate\":\"Jun 4, 2019 12:00:00 AM\",\"endDate\":\"Jun 4, 2019 12:00:00 AM\",\"lengthMiles\":10,\"officialRouteName\":\"Hilly Hike\",\"lifelogDirectory\":\"File/Area\",\"description\":\"long hike, feet hurt\"}]",
+				actRepo.getAllActivities(MOCK_VALUE));
 
 	}
 
@@ -62,8 +63,8 @@ public class ActivityDBRepositoryTest {
 	public void testFetchAllActivitiesByCategory() {
 		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
-		Assert.assertEquals(actRepo.getAllActivitiesByCategory(MOCK_VALUE, MOCK_VALUE),
-				"{\"message\": \"You have not completed any activities\"}");
+		Assert.assertEquals("{\"message\": \"You have not completed any activities\"}",
+				actRepo.getAllActivitiesByCategory(MOCK_VALUE, MOCK_VALUE));
 
 	}
 
@@ -72,7 +73,7 @@ public class ActivityDBRepositoryTest {
 		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
 		String reply = actRepo.getAnActivity(MOCK_VALUE, MOCK_VALUE4);
-		Assert.assertEquals(reply, "{\"message\": \"Activity not found\"}");
+		Assert.assertEquals("{\"message\": \"Activity not found\"}", reply);
 
 	}
 
@@ -107,7 +108,7 @@ public class ActivityDBRepositoryTest {
 		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
 		String reply = actRepo.deleteActivity(MOCK_VALUE, MOCK_VALUE4);
-		Assert.assertEquals(reply, "{\"message\": \"activity successfully removed\"}");
+		Assert.assertEquals("{\"message\": \"activity successfully removed\"}", reply);
 	}
 
 	@Test
@@ -115,6 +116,6 @@ public class ActivityDBRepositoryTest {
 		User user = new User("N.Cravensworth@gmail.com", "Nadja Cravensworth", "Password");
 		Mockito.when(manager.find(Mockito.any(), Mockito.anyString())).thenReturn(user);
 		String reply = actRepo.updateActivity(MOCK_VALUE, MOCK_VALUE, MOCK_VALUE4);
-		Assert.assertEquals(reply, "{\"message\": \"Activity successfully updated\"}");
+		Assert.assertEquals("{\"message\": \"Activity successfully updated\"}", reply);
 	}
 }
