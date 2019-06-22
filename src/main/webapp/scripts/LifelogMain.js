@@ -1,4 +1,6 @@
 const URLstring = "http://localhost:8080/LifeloggingActivityLogV3/api/";
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
 
 function setUpPage() {
 
@@ -30,6 +32,13 @@ function formatDate(date) {
         "day": date.substring(9, 10)
     };
 
+}
+
+function logOffUser() {
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userPassword");
+    location.reload();
 }
 
 function makeRequest(method, url, body) {

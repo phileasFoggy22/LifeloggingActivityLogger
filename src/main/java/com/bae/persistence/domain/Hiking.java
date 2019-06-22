@@ -21,7 +21,7 @@ public class Hiking extends Activity {
 
 	public Hiking(String lifelogDirectory, String description, String location, LocalDate startDate, LocalDate endDate,
 			int lengthMiles, String officialRouteName) {
-		super(lifelogDirectory, description);
+		super(lifelogDirectory, description, Hiking.class.toString());
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
