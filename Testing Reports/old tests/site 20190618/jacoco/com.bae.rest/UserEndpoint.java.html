@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserEndpoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LifeloggingActivityLogV3</a> &gt; <a href="index.source.html" class="el_package">com.bae.rest</a> &gt; <span class="el_source">UserEndpoint.java</span></div><h1>UserEndpoint.java</h1><pre class="source lang-java linenums">package com.bae.rest;
+
+import javax.inject.Inject;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import com.bae.business.service.UserServiceImp;
+
+@Path(&quot;/users&quot;)
+<span class="nc" id="L15">public class UserEndpoint {</span>
+
+	@Inject
+	private UserServiceImp service;
+
+	// Create
+	@Path(&quot;/createUser&quot;)
+	@POST
+	@Produces({ &quot;application/json&quot; })
+	public String createUser(String userJSON) {
+<span class="nc" id="L25">		return service.createUser(userJSON);</span>
+	}
+
+	// Read
+	@Path(&quot;/fetchUser/{email}&quot;)
+	@GET
+	@Produces({ &quot;application/json&quot; })
+	public String getUser(@PathParam(&quot;email&quot;) String userEmail) {
+<span class="nc" id="L33">		return service.getUser(userEmail);</span>
+	}
+
+	// Read
+	@Path(&quot;/fetchAllUsers&quot;)
+	@GET
+	@Produces({ &quot;application/json&quot; })
+	public String getAllUsers() {
+<span class="nc" id="L41">		return service.getAllUsers();</span>
+	}
+
+	// // Update
+	@Path(&quot;/updateUser/{email}&quot;)
+	@PUT
+	@Produces({ &quot;application/json&quot; })
+	public String updateUser(@PathParam(&quot;email&quot;) String userEmail, String userJSON) {
+<span class="nc" id="L49">		return service.updateUser(userEmail, userJSON);</span>
+	}
+
+	//
+	// // Delete
+	@Path(&quot;/removeUser/{email}&quot;)
+	@DELETE
+	@Produces({ &quot;application/json&quot; })
+	public String deleteUser(@PathParam(&quot;email&quot;) String userEmail) {
+<span class="nc" id="L58">		return service.deleteUser(userEmail);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

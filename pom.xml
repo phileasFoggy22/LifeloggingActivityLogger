@@ -27,6 +27,12 @@
     <dependencyManagement>
       <dependencies>
       
+         <dependency>
+     <groupId>org.seleniumhq.selenium</groupId>
+       <artifactId>selenium-java</artifactId>
+       <version>3.141.59</version>
+   </dependency>
+      
       <dependency>
     <groupId>javax.json.bind</groupId>
     <artifactId>javax.json.bind-api</artifactId>
@@ -175,9 +181,14 @@
 
 		
     </dependencies>
-
-	<reporting>
-	        <plugins>           
+<reporting>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.3</version>
+        </plugin>
+          
 	            <plugin>
 	                <groupId>org.apache.maven.plugins</groupId>
 	                <artifactId>maven-project-info-reports-plugin</artifactId>
