@@ -11,6 +11,8 @@ function recentKayakingActivities() {
 }
 
 function recentKayakingNode(newobj1, i) {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
     let nodeDiv = document.createElement("DIV");
     nodeDiv.className = "container activitylisting"
     let row1 = document.createElement("DIV");
