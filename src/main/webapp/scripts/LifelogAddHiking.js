@@ -4,6 +4,7 @@ function addNewHikingActivity() {
 }
 
 function addHike() {
+    let userEmail = localStorage.getItem("userEmail");
     let AHtitleh2Input = document.getElementById("AddHikeRouteName").value;
     let AHh6locInput = document.getElementById("AddHikeLocation").value;
     let AHh6milesInput = document.getElementById("AddHikeDistance").value;
