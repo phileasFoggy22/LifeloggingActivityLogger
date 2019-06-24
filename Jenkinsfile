@@ -8,7 +8,7 @@ pipeline{
                     }
                     stage('---clean---'){
                             steps{
-                                    sh "mvn clean"
+                                    sh "sudo mvn clean"
                             }
                     }
                     stage('--test--'){
@@ -23,7 +23,7 @@ pipeline{
                     }
                     stage('--sonar--'){
                             steps{
-                                    sh "mvn sonar:sonar"
+                                    sh "sudo mvn sonar:sonar"
                             }
                     }
                     stage('--verify--'){
