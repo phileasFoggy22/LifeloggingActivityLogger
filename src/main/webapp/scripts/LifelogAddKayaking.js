@@ -4,6 +4,7 @@ function addNewKayakingActivity() {
 }
 
 function addPaddle() {
+    let userEmail = localStorage.getItem("userEmail");
     let AKJStart = document.getElementById("AddKayakJourneyStart").value;
     let AKJEnd = document.getElementById("AddKayakJourneyEnd").value;
     let AKDuration = document.getElementById("AddKayakDuration").value;
