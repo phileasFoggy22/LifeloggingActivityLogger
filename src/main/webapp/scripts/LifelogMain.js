@@ -1,4 +1,4 @@
-const URLstring = "http://localhost:8080/LifeloggingActivityLogV3/api/";
+const URLstring = "http://35.194.104.88:8888/LifeloggingActivityLogV3/api/";
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
