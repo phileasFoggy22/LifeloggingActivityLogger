@@ -57,12 +57,14 @@ function recentKayakingNode(newobj1, i) {
     AKDate.className = "form-control";
     AKDate.placeholder = "Date";
 
-
+    dateh4.innerHTML = "";
     if (newobj1[i]["dateCompleted"] != null) {
-        dateh4.innerHTML += newobj1[i]["dateCompleted"];
-        AKDate.value = newobj1[i]["dateCompleted"];
+        dateh4.innerHTML += newobj1[i]["dateCompleted"]["day"] + ' ' + monthNames[newobj1[i]["dateCompleted"]["month"]] + ' ' + newobj1[i]["dateCompleted"]["year"];
+        AKDate.value = newobj1[i]["startDate"];
     }
     dateh4.style.float = "right";
+
+
 
     col1a.appendChild(titleh2);
     col1a.appendChild(AKJStart);
