@@ -4,7 +4,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 function setUpPage() {
 
-    var images = ['T0010081.jpg', 'T0010086.JPG', 'T0020021.JPG', 'T0020046.jpg', 'T0020101.jpg', 'T0020114.jpg', 'T0040145.jpg', 'T0040160.jpg', 'T0040166.jpg', 'T0040174.jpg', 'T0040189.jpg', 'T0040215.jpg', 'T0040226.jpg', 'T0070114.jpg', 'T0070127.jpg', 'T0070132.jpg', 'T0070153.jpg', 'T0070171.jpg', 'T0070201.jpg', 'T0070234.jpg', 'T0070339.jpg'];
+    var images = ['T0010086.JPG', 'T0020021.JPG'];
     var dir = '../images/';
     var randomCount = Math.round(Math.random() * (images.length - 1));
     document.getElementById("imageBanner").style.backgroundImage = "url(" + dir + images[randomCount] + ")";
